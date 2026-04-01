@@ -24,8 +24,9 @@ function renderProducts(list) {
   list.forEach(product => {
     const card = document.createElement("article");
     card.className = "product-card";
+    const imageUrl = product.image || "https://via.placeholder.com/640x400?text=No+Image";
     card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" loading="lazy" />
+      <img src="${imageUrl}" alt="${product.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/640x400?text=Image+Unavailable'" />
       <div class="info">
         <h3>${product.name}</h3>
         <div class="tagline"><span>${product.category}</span> <span>⭐ ${product.rating.toFixed(1)}</span></div>
