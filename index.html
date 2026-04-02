@@ -2,70 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ERK-Inspired Redesign</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ERK | Enjinia Resolved Krafts</title>
   <link rel="stylesheet" href="styles/styles.css" />
 </head>
+
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">ERK</div>
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li class="dropdown">
-          <a href="#">Services</a>
-          <ul class="dropdown-menu">
-            <li><a href="#">CNC Machining</a></li>
-            <li><a href="#">Injection Molding</a></li>
-            <li><a href="#">3D Printing</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>On-Demand Manufacturing Solutions</h1>
-      <p>From prototypes to production, we deliver precision parts at unprecedented speed.</p>
-      <a href="#" class="cta-button">Get a Quote</a>
+<!-- NAVBAR -->
+<header>
+  <nav class="navbar">
+    <div class="logo">ERK</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Engineering your ideas into reality</h1>
+    <p>Faster than your deadlines. CNC | 3D Printing | Injection Molding | Sheet Metal</p>
+    <a href="#contact" class="cta-button">Get Instant Quote</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="process" class="services">
+  <h2>How It Works</h2>
+  <div class="service-cards">
+    <div class="card">
+      <h3>1. Upload Design</h3>
+      <p>Send your CAD files (STEP/STL) or idea.</p>
     </div>
-  </section>
+    <div class="card">
+      <h3>2. Choose Process</h3>
+      <p>Select material, quantity, and manufacturing method.</p>
+    </div>
+    <div class="card">
+      <h3>3. Get Delivered</h3>
+      <p>We manufacture and deliver with precision.</p>
+    </div>
+  </div>
+</section>
 
-  <main>
-    <section class="services">
-      <h2>Our Services</h2>
-      <div class="service-cards">
-        <div class="card">
-          <h3>CNC Machining</h3>
-          <p>High-precision parts with fast turnaround times.</p>
-        </div>
-        <div class="card">
-          <h3>Injection Molding</h3>
-          <p>Custom molds for low- to high-volume production.</p>
-        </div>
-        <div class="card">
-          <h3>3D Printing</h3>
-          <p>Rapid prototyping with a variety of materials.</p>
-        </div>
-      </div>
-    </section>
+<!-- SERVICES -->
+<section id="services" class="services">
+  <h2>Our Services</h2>
+  <div class="service-cards">
+    <div class="card">
+      <h3>CNC Machining</h3>
+      <p>High precision parts in metal & plastic.</p>
+    </div>
+    <div class="card">
+      <h3>3D Printing</h3>
+      <p>Rapid prototyping with multiple materials.</p>
+    </div>
+    <div class="card">
+      <h3>Injection Molding</h3>
+      <p>Scalable production with custom molds.</p>
+    </div>
+    <div class="card">
+      <h3>Sheet Metal</h3>
+      <p>Fabrication, bending, and enclosure builds.</p>
+    </div>
+  </div>
+</section>
 
-    <section class="product-gallery">
-      <h2>Product Gallery</h2>
-      <div class="search-box">
-        <input id="search" type="search" placeholder="Search products..." />
-      </div>
-      <div id="products" class="product-grid"></div>
-    </section>
-  </main>
+<!-- WHY ERK -->
+<section class="services">
+  <h2>Why ERK</h2>
+  <div class="service-cards">
+    <div class="card">
+      <h3>⚡ Fast Turnaround</h3>
+      <p>Speed optimized workflows for quick delivery.</p>
+    </div>
+    <div class="card">
+      <h3>💰 Competitive Pricing</h3>
+      <p>Cost-efficient without compromising quality.</p>
+    </div>
+    <div class="card">
+      <h3>🎯 High Precision</h3>
+      <p>Engineering-grade accuracy guaranteed.</p>
+    </div>
+    <div class="card">
+      <h3>🇮🇳 India Focused</h3>
+      <p>Local support with global standards.</p>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2026 ERK. All rights reserved.</p>
-  </footer>
+<!-- INDUSTRIES -->
+<section id="industries" class="services">
+  <h2>Industries We Serve</h2>
+  <div class="service-cards">
+    <div class="card"><h3>Automotive</h3></div>
+    <div class="card"><h3>Aerospace</h3></div>
+    <div class="card"><h3>Startups</h3></div>
+    <div class="card"><h3>Consumer Products</h3></div>
+  </div>
+</section>
 
-  <script src="scripts/script.js"></script>
+<!-- CONTACT -->
+<section id="contact" class="services">
+  <h2>Get a Quote</h2>
+  <p>Send your requirements via WhatsApp or form.</p>
+  <a href="https://wa.me/917806894376" class="cta-button">Chat on WhatsApp</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 ERK - Enjinia Resolved Krafts</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/917806894376" target="_blank" class="whatsapp-float">
+  💬
+</a>
+
 </body>
 </html>
