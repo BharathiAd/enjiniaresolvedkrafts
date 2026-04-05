@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ERK | Enjinia Resolved Krafts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="styles/styles.css" />
 </head>
 <body>
@@ -11,11 +17,12 @@
 <!-- NAVBAR -->
 <header>
   <nav class="navbar">
-    <div class="logo">ERK</div>
+    <a href="#" class="logo">ERK</a>
     <ul class="nav-links">
       <li><a href="#">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
+      <li><a href="#showcase">Showcase</a></li>
       <li><a href="#industries">Industries</a></li>
       <li>
         <a href="https://forms.zohopublic.in/businessenjiniares1/form/ERKQuoteRequestForm/formperma/KaqFTD0n6Zn0AijIp77lfl_2QPXpc9l2-XhBvvEQMwg" target="_blank" rel="noopener noreferrer">
@@ -28,33 +35,95 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>Engineering your ideas into reality</h1>
-    <p>Faster than your deadlines. CNC | 3D Printing | Injection Molding | Sheet Metal</p>
-    <a
-      href="https://forms.zohopublic.in/businessenjiniares1/form/ERKQuoteRequestForm/formperma/KaqFTD0n6Zn0AijIp77lfl_2QPXpc9l2-XhBvvEQMwg"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="cta-button"
-    >
-      Get Instant Quote
-    </a>
+  <div class="hero-shell">
+    <div class="hero-content">
+      <p class="eyebrow">Precision Manufacturing Partner</p>
+      <h1>From CAD file to production-ready parts with less waiting and more certainty.</h1>
+      <p class="hero-copy">
+        ERK helps teams move from concept to delivered components across CNC machining, 3D printing,
+        injection molding, and sheet metal fabrication.
+      </p>
+      <div class="hero-actions">
+        <a
+          href="https://forms.zohopublic.in/businessenjiniares1/form/ERKQuoteRequestForm/formperma/KaqFTD0n6Zn0AijIp77lfl_2QPXpc9l2-XhBvvEQMwg"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-button"
+        >
+          Get Instant Quote
+        </a>
+        <a href="#services" class="secondary-button">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>24h</strong>
+          <span>faster response cycles</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong>
+          <span>manufacturing workflows</span>
+        </div>
+        <div class="stat">
+          <strong>India</strong>
+          <span>local support, global standards</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <article class="visual-card visual-main">
+        <img
+          src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=900&q=80"
+          alt="Precision machining setup with industrial equipment"
+        />
+        <div class="visual-caption">
+          <span>Production Spotlight</span>
+          <h3>Industrial-grade output for prototypes and repeat orders</h3>
+        </div>
+      </article>
+
+      <article class="visual-card visual-accent">
+        <img
+          src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=700&q=80"
+          alt="Engineer reviewing a manufactured component"
+        />
+      </article>
+
+      <div class="floating-note">
+        <span class="note-label">Live Capability</span>
+        <strong>Prototype to batch production</strong>
+        <p>One partner for quoting, material selection, fabrication, and dispatch.</p>
+      </div>
+    </div>
   </div>
+</section>
+
+<section class="trust-strip">
+  <div class="trust-item">Rapid prototyping</div>
+  <div class="trust-item">Tooling support</div>
+  <div class="trust-item">Batch manufacturing</div>
+  <div class="trust-item">Inspection-first delivery</div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section id="process" class="services">
-  <h2>How It Works</h2>
-  <div class="service-cards">
+  <div class="section-heading">
+    <p class="eyebrow">How It Works</p>
+    <h2>A cleaner handoff from design to dispatch</h2>
+  </div>
+  <div class="service-cards process-cards">
     <div class="card">
+      <span class="card-kicker">Step 01</span>
       <h3>1. Upload Design</h3>
       <p>Send your CAD files (STEP/STL) or idea.</p>
     </div>
     <div class="card">
+      <span class="card-kicker">Step 02</span>
       <h3>2. Choose Process</h3>
       <p>Select material, quantity, and manufacturing method.</p>
     </div>
     <div class="card">
+      <span class="card-kicker">Step 03</span>
       <h3>3. Get Delivered</h3>
       <p>We manufacture and deliver with precision.</p>
     </div>
@@ -63,30 +132,123 @@
 
 <!-- SERVICES -->
 <section id="services" class="services">
-  <h2>Our Services</h2>
+  <div class="section-heading">
+    <p class="eyebrow">Our Services</p>
+    <h2>Built for urgent prototypes and serious production runs</h2>
+  </div>
   <div class="service-cards">
     <div class="card">
+      <span class="card-kicker">Metal + Plastic</span>
       <h3>CNC Machining</h3>
       <p>High precision parts in metal &amp; plastic.</p>
     </div>
     <div class="card">
+      <span class="card-kicker">Rapid Iteration</span>
       <h3>3D Printing</h3>
       <p>Rapid prototyping with multiple materials.</p>
     </div>
     <div class="card">
+      <span class="card-kicker">Scale Ready</span>
       <h3>Injection Molding</h3>
       <p>Scalable production with custom molds.</p>
     </div>
     <div class="card">
+      <span class="card-kicker">Fabrication</span>
       <h3>Sheet Metal</h3>
       <p>Fabrication, bending, and enclosure builds.</p>
     </div>
   </div>
 </section>
 
+<section class="capabilities">
+  <div class="capabilities-copy">
+    <p class="eyebrow">Capability Stack</p>
+    <h2>Designed to help hardware teams move with fewer blockers.</h2>
+    <p class="capabilities-text">
+      Whether you need a one-off prototype, pilot batch, or repeat production support, ERK combines
+      engineering-first communication with practical manufacturing execution.
+    </p>
+    <div class="capability-list">
+      <div class="capability-item">
+        <strong>Material guidance</strong>
+        <span>Choose the right balance of strength, finish, and cost.</span>
+      </div>
+      <div class="capability-item">
+        <strong>Process fit</strong>
+        <span>Match prototype, tooling, or production needs to the right workflow.</span>
+      </div>
+      <div class="capability-item">
+        <strong>Delivery clarity</strong>
+        <span>Stay aligned on quantities, timelines, and manufacturability from the start.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="capabilities-visual">
+    <article class="capability-panel capability-image">
+      <img
+        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80"
+        alt="Modern manufacturing floor with equipment and precision workflow"
+      />
+    </article>
+    <div class="capability-metrics">
+      <article class="capability-panel metric-panel">
+        <span class="metric-value">01</span>
+        <p>Rapid quotation support for teams trying to move from concept to confirmation quickly.</p>
+      </article>
+      <article class="capability-panel metric-panel">
+        <span class="metric-value">02</span>
+        <p>Process coverage across CNC, 3D printing, molding, and fabricated metal work.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="showcase" class="showcase">
+  <div class="section-heading">
+    <p class="eyebrow">Showcase</p>
+    <h2>Visual proof of the kind of work ERK is built for</h2>
+  </div>
+  <div class="showcase-grid">
+    <article class="showcase-card tall">
+      <img
+        src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80"
+        alt="Team discussing engineering and manufacturing plans"
+      />
+      <div class="showcase-copy">
+        <h3>Design collaboration</h3>
+        <p>Sharper decisions early in the process reduce revisions and speed up production.</p>
+      </div>
+    </article>
+    <article class="showcase-card">
+      <img
+        src="https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=900&q=80"
+        alt="CNC tooling and machined components"
+      />
+      <div class="showcase-copy">
+        <h3>CNC precision</h3>
+        <p>Complex parts with clean tolerances and dependable finishing.</p>
+      </div>
+    </article>
+    <article class="showcase-card">
+      <img
+        src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=900&q=80"
+        alt="3D printed prototype part in a workshop"
+      />
+      <div class="showcase-copy">
+        <h3>Prototype speed</h3>
+        <p>Fast physical validation for startups and product teams under deadline.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- WHY ERK -->
-<section class="services">
-  <h2>Why ERK</h2>
+<section class="services feature-band">
+  <div class="section-heading">
+    <p class="eyebrow">Why ERK</p>
+    <h2>Less chaos, more manufacturing confidence</h2>
+  </div>
   <div class="service-cards">
     <div class="card">
       <h3>Fast Turnaround</h3>
@@ -109,13 +271,47 @@
 
 <!-- INDUSTRIES -->
 <section id="industries" class="services">
-  <h2>Industries We Serve</h2>
-  <div class="service-cards">
-    <div class="card"><h3>Automotive</h3></div>
-    <div class="card"><h3>Aerospace</h3></div>
-    <div class="card"><h3>Startups</h3></div>
-    <div class="card"><h3>Consumer Products</h3></div>
+  <div class="section-heading">
+    <p class="eyebrow">Industries</p>
+    <h2>Supporting teams across products, hardware, and industrial builds</h2>
   </div>
+  <div class="service-cards industries-grid">
+    <div class="card industry-card">
+      <span class="industry-icon">01</span>
+      <h3>Automotive</h3>
+      <p>Functional parts, housings, fixtures, and production support for fast-moving vehicle teams.</p>
+    </div>
+    <div class="card industry-card">
+      <span class="industry-icon">02</span>
+      <h3>Aerospace</h3>
+      <p>Precision-focused components and controlled manufacturing workflows for critical applications.</p>
+    </div>
+    <div class="card industry-card">
+      <span class="industry-icon">03</span>
+      <h3>Startups</h3>
+      <p>Prototype-friendly execution for product teams that need speed without losing technical quality.</p>
+    </div>
+    <div class="card industry-card">
+      <span class="industry-icon">04</span>
+      <h3>Consumer Products</h3>
+      <p>From appearance models to scalable manufacturing paths for market-ready hardware products.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-panel">
+  <div class="cta-panel-copy">
+    <p class="eyebrow">Ready To Build</p>
+    <h2>Share your requirement and let ERK line up the right process, material, and timeline.</h2>
+  </div>
+  <a
+    href="https://forms.zohopublic.in/businessenjiniares1/form/ERKQuoteRequestForm/formperma/KaqFTD0n6Zn0AijIp77lfl_2QPXpc9l2-XhBvvEQMwg"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="cta-button"
+  >
+    Start Your Quote
+  </a>
 </section>
 
 <!-- FOOTER -->
