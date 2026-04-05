@@ -8,6 +8,7 @@ This workspace contains the official website for ERK (Enjinia Resolved Krafts), 
 - Manufacturing processes: CNC Machining, 3D Printing, Injection Molding, Sheet Metal
 - Responsive mobile-friendly layout
 - Clean HTML/CSS design with dark theme
+- Direct quote-request and WhatsApp contact links
 
 ## Services Offered
 
@@ -19,10 +20,15 @@ This workspace contains the official website for ERK (Enjinia Resolved Krafts), 
 ## Run
 
 1. Open `index.html` in your browser (double-click or use `Live Server` extension)
-2. Navigate through the sections: Home, Services, Process, Industries, Contact
+2. Navigate through the sections: Home, Services, Process, Industries, and the external quote form
 
 ## Customization
 
 - Edit `index.html` to update content and sections
 - Modify `styles/styles.css` for styling changes
-- The `scripts/script.js` file is currently unused but contains sample product gallery code if needed
+
+## Project Structure
+
+- `index.html`: Main single-page website markup
+- `styles/styles.css`: Active stylesheet used by the landing page
+- `CNAME`: Custom domain configuration for static hosting
