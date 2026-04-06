@@ -1,34 +1,33 @@
 # ERK - Enjinia Resolved Krafts
 
-This workspace contains the official website for ERK (Enjinia Resolved Krafts), a manufacturing company specializing in precision engineering and prototyping services.
+This workspace contains the official ERK website, positioned around the company's actual work in custom machine building, industrial automation, conveyors, inspection systems, fabrication, and process-focused engineering.
+
+## Website Focus
+
+- Special purpose machines and application-led engineering
+- Conveyor and inspection systems
+- Automation-oriented machine development
+- Fabrication and welding system builds
+- Real media showcase using ERK project assets
 
 ## Features
 
-- Company branding and services overview
-- Manufacturing processes: CNC Machining, 3D Printing, Injection Molding, Sheet Metal
-- Responsive mobile-friendly layout
-- Clean HTML/CSS design with dark theme
+- Single-page industrial portfolio website
+- Real categorized showcase fed from structured media data
+- Responsive gallery and video sections
 - Direct quote-request and WhatsApp contact links
-
-## Services Offered
-
-- **CNC Machining**: High precision parts in metal & plastic
-- **3D Printing**: Rapid prototyping with multiple materials
-- **Injection Molding**: Scalable production with custom molds
-- **Sheet Metal**: Fabrication, bending, and enclosure builds
+- Local image and video asset organization under `assets/images` and `assets/videos`
 
 ## Run
 
-1. Open `index.html` in your browser (double-click or use `Live Server` extension)
-2. Navigate through the sections: Home, Services, Process, Industries, and the external quote form
+1. Open `index.html` in a browser or with Live Server
+2. Review the sections: Home, Solutions, Process, Projects, Showcase, Industries, and contact CTA
 
-## Customization
+## Main Files
 
-- Edit `index.html` to update content and sections
-- Modify `styles/styles.css` for styling changes
-
-## Project Structure
-
-- `index.html`: Main single-page website markup
-- `styles/styles.css`: Active stylesheet used by the landing page
-- `CNAME`: Custom domain configuration for static hosting
+- `index.html`: Single-page site structure and section content
+- `styles/styles.css`: Main visual system and responsive styling
+- `scripts/showcase-data.js`: Structured media metadata with names, categories, and descriptions
+- `scripts/showcase.js`: Reusable rendering logic for project cards, galleries, and videos
+- `assets/images`: Organized image assets used by the website
+- `assets/videos`: Organized video assets used by the website

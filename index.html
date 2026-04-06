@@ -17,11 +17,23 @@
 <!-- NAVBAR -->
 <header>
   <nav class="navbar">
-    <a href="#" class="logo">ERK</a>
-    <ul class="nav-links">
+    <a href="#" class="logo" aria-label="ERK home">
+      <img src="assets/logo/logo-mark.png" alt="ERK logo mark" class="logo-image" />
+      <span class="logo-text">
+        <strong>Enjinia Resolved Krafts</strong>
+        <span>Precision manufacturing partner</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="site-navigation">
       <li><a href="#">Home</a></li>
-      <li><a href="#services">Services</a></li>
+      <li><a href="#solutions">Solutions</a></li>
       <li><a href="#process">Process</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#showcase">Showcase</a></li>
       <li><a href="#industries">Industries</a></li>
       <li>
@@ -37,11 +49,11 @@
 <section class="hero">
   <div class="hero-shell">
     <div class="hero-content">
-      <p class="eyebrow">Precision Manufacturing Partner</p>
-      <h1>From CAD file to production-ready parts with less waiting and more certainty.</h1>
+      <p class="eyebrow">Special Purpose Machines And Automation</p>
+      <h1>ERK engineers production systems for movement, inspection, joining, punching, labeling, and controlled line execution.</h1>
       <p class="hero-copy">
-        ERK helps teams move from concept to delivered components across CNC machining, 3D printing,
-        injection molding, and sheet metal fabrication.
+        We design and manufacture custom machines, conveyors, fabrication systems, and automation solutions
+        for industrial teams that need dependable engineering, disciplined execution, and production-ready output.
       </p>
       <div class="hero-actions">
         <a
@@ -50,22 +62,22 @@
           rel="noopener noreferrer"
           class="cta-button"
         >
-          Get Instant Quote
+          Discuss Your Requirement
         </a>
-        <a href="#services" class="secondary-button">Explore Services</a>
+        <a href="#showcase" class="secondary-button">View ERK Work</a>
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <strong>24h</strong>
-          <span>faster response cycles</span>
+          <strong>17</strong>
+          <span>catalogued ERK showcase assets</span>
         </div>
         <div class="stat">
-          <strong>4</strong>
-          <span>manufacturing workflows</span>
+          <strong>SPM</strong>
+          <span>special purpose machine focus</span>
         </div>
         <div class="stat">
           <strong>India</strong>
-          <span>local support, global standards</span>
+          <span>engineering, fabrication, and deployment support</span>
         </div>
       </div>
     </div>
@@ -73,113 +85,114 @@
     <div class="hero-visual">
       <article class="visual-card visual-main">
         <img
-          src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&w=900&q=80"
-          alt="Precision machining setup with industrial equipment"
+          src="assets/images/food-box-machine.jpg"
+          alt="ERK custom food box machine"
         />
         <div class="visual-caption">
-          <span>Production Spotlight</span>
-          <h3>Industrial-grade output for prototypes and repeat orders</h3>
+          <span>Representative Build</span>
+          <h3>Packaging machine platform engineered for repeatable handling and production throughput</h3>
         </div>
       </article>
 
       <article class="visual-card visual-accent">
         <img
-          src="https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=700&q=80"
-          alt="Engineer reviewing a manufactured component"
+          src="assets/images/tv-inspecting-conveyor.jpg"
+          alt="ERK inspection conveyor system"
         />
       </article>
 
       <div class="floating-note">
-        <span class="note-label">Live Capability</span>
-        <strong>Prototype to batch production</strong>
-        <p>One partner for quoting, material selection, fabrication, and dispatch.</p>
+        <span class="note-label">ERK Scope</span>
+        <strong>Representative systems include machines, conveyors, fabrication platforms, and automation builds</strong>
+        <p>These examples show delivered capability, not the full extent of what ERK can engineer.</p>
       </div>
     </div>
   </div>
 </section>
 
 <section class="trust-strip">
-  <div class="trust-item">Rapid prototyping</div>
-  <div class="trust-item">Tooling support</div>
-  <div class="trust-item">Batch manufacturing</div>
-  <div class="trust-item">Inspection-first delivery</div>
+  <div class="trust-item">Special purpose machines</div>
+  <div class="trust-item">Conveyors and inspection systems</div>
+  <div class="trust-item">Automation integration</div>
+  <div class="trust-item">Fabrication and welding fixtures</div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section id="process" class="services">
   <div class="section-heading">
-    <p class="eyebrow">How It Works</p>
-    <h2>A cleaner handoff from design to dispatch</h2>
+    <p class="eyebrow">Execution Model</p>
+    <h2>How ERK takes an industrial requirement from need statement to working machine</h2>
   </div>
   <div class="service-cards process-cards">
     <div class="card">
       <span class="card-kicker">Step 01</span>
-      <h3>1. Upload Design</h3>
-      <p>Send your CAD files (STEP/STL) or idea.</p>
+      <h3>Requirement Study</h3>
+      <p>We review the operation, output target, part flow, and real production constraints before design starts.</p>
     </div>
     <div class="card">
       <span class="card-kicker">Step 02</span>
-      <h3>2. Choose Process</h3>
-      <p>Select material, quantity, and manufacturing method.</p>
+      <h3>Engineering And Build</h3>
+      <p>Mechanical structure, process mechanism, fabrication, and machine assembly are developed as one coordinated build.</p>
     </div>
     <div class="card">
       <span class="card-kicker">Step 03</span>
-      <h3>3. Get Delivered</h3>
-      <p>We manufacture and deliver with precision.</p>
+      <h3>Validation And Handover</h3>
+      <p>We run the system, refine the performance, and deliver a machine that is ready for actual floor use.</p>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="services">
+<!-- SOLUTIONS -->
+<section id="solutions" class="services">
   <div class="section-heading">
-    <p class="eyebrow">Our Services</p>
-    <h2>Built for urgent prototypes and serious production runs</h2>
+    <p class="eyebrow">What We Build</p>
+    <h2>Engineering solutions shaped around production movement, handling, joining, and inspection</h2>
   </div>
   <div class="service-cards">
     <div class="card">
-      <span class="card-kicker">Metal + Plastic</span>
-      <h3>CNC Machining</h3>
-      <p>High precision parts in metal &amp; plastic.</p>
+      <span class="card-kicker">Machine Building</span>
+      <h3>Special Purpose Machines</h3>
+      <p>Custom-built systems engineered around a specific operation, cycle requirement, or manufacturing bottleneck.</p>
     </div>
     <div class="card">
-      <span class="card-kicker">Rapid Iteration</span>
-      <h3>3D Printing</h3>
-      <p>Rapid prototyping with multiple materials.</p>
+      <span class="card-kicker">Material Flow</span>
+      <h3>Conveyor And Inspection Systems</h3>
+      <p>Handling, transfer, and inspection setups for smoother product movement and more stable line-side quality control.</p>
     </div>
     <div class="card">
-      <span class="card-kicker">Scale Ready</span>
-      <h3>Injection Molding</h3>
-      <p>Scalable production with custom molds.</p>
+      <span class="card-kicker">Controls And Motion</span>
+      <h3>Automation Integration</h3>
+      <p>Mechanisms and automation sequences aligned to improve repeatability, throughput, and operator efficiency.</p>
     </div>
     <div class="card">
-      <span class="card-kicker">Fabrication</span>
-      <h3>Sheet Metal</h3>
-      <p>Fabrication, bending, and enclosure builds.</p>
+      <span class="card-kicker">Structural Execution</span>
+      <h3>Fabrication And Welding Systems</h3>
+      <p>Fabricated frames, welded assemblies, fixtures, and special setups built for industrial durability and serviceability.</p>
     </div>
   </div>
 </section>
 
 <section class="capabilities">
   <div class="capabilities-copy">
-    <p class="eyebrow">Capability Stack</p>
-    <h2>Designed to help hardware teams move with fewer blockers.</h2>
+    <p class="eyebrow">Engineering Depth</p>
+    <h2>These showcased systems reflect ERK capability, while the engineering scope extends well beyond the current media library.</h2>
     <p class="capabilities-text">
-      Whether you need a one-off prototype, pilot batch, or repeat production support, ERK combines
-      engineering-first communication with practical manufacturing execution.
+      The current portfolio points clearly toward custom automation, process-specific machinery, conveyors,
+      inspection systems, welding platforms, and production handling equipment. The showcased references are
+      representative examples of delivered work, not an upper limit on what ERK can take on.
     </p>
     <div class="capability-list">
       <div class="capability-item">
-        <strong>Material guidance</strong>
-        <span>Choose the right balance of strength, finish, and cost.</span>
+        <strong>Custom mechanism development</strong>
+        <span>Builds shaped around deburring, facing, labeling, punching, handling, and inspection operations.</span>
       </div>
       <div class="capability-item">
-        <strong>Process fit</strong>
-        <span>Match prototype, tooling, or production needs to the right workflow.</span>
+        <strong>Production-side practicality</strong>
+        <span>Systems are conceived with machine access, repeatability, maintainability, and throughput in mind.</span>
       </div>
       <div class="capability-item">
-        <strong>Delivery clarity</strong>
-        <span>Stay aligned on quantities, timelines, and manufacturability from the start.</span>
+        <strong>Single-team execution</strong>
+        <span>Concept, fabrication, machine build, and showcase-ready output all stay within one engineering story.</span>
       </div>
     </div>
   </div>
@@ -187,59 +200,94 @@
   <div class="capabilities-visual">
     <article class="capability-panel capability-image">
       <img
-        src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80"
-        alt="Modern manufacturing floor with equipment and precision workflow"
+        src="assets/images/tig-welding-spm.jpg"
+        alt="ERK TIG welding special purpose machine"
       />
     </article>
     <div class="capability-metrics">
       <article class="capability-panel metric-panel">
         <span class="metric-value">01</span>
-        <p>Rapid quotation support for teams trying to move from concept to confirmation quickly.</p>
+        <p>Machine concepts are grounded in specific plant-floor applications instead of broad manufacturing claims.</p>
       </article>
       <article class="capability-panel metric-panel">
         <span class="metric-value">02</span>
-        <p>Process coverage across CNC, 3D printing, molding, and fabricated metal work.</p>
+        <p>The current ERK portfolio clearly leans toward automation, conveying, welding systems, and custom process builds.</p>
       </article>
     </div>
   </div>
 </section>
 
+<section id="projects" class="showcase project-spotlights">
+  <div class="section-heading">
+    <p class="eyebrow">Selected Work</p>
+    <h2>Representative systems that demonstrate ERK's current execution standard</h2>
+  </div>
+  <div class="project-spotlight-grid">
+    <article class="spotlight-panel spotlight-wide">
+      <img src="assets/images/food-box-machine.jpg" alt="ERK food box machine" loading="lazy" />
+      <div class="spotlight-copy">
+        <span>Packaging Equipment</span>
+        <h3>Food Box Machine</h3>
+        <p>Purpose-built handling and machine structure developed for packaging-oriented product movement and station stability.</p>
+      </div>
+    </article>
+    <article class="spotlight-panel">
+      <img src="assets/images/tv-inspecting-conveyor.jpg" alt="ERK TV inspecting conveyor" loading="lazy" />
+      <div class="spotlight-copy">
+        <span>Inspection Conveyor</span>
+        <h3>TV Inspecting Conveyor</h3>
+        <p>Inspection-focused conveyor design supporting clean flow, operator visibility, and in-line review.</p>
+      </div>
+    </article>
+    <article class="spotlight-panel">
+      <img src="assets/images/tig-welding-spm.jpg" alt="ERK TIG welding SPM" loading="lazy" />
+      <div class="spotlight-copy">
+        <span>Fabrication System</span>
+        <h3>TIG Welding SPM</h3>
+        <p>Special purpose welding machine built for controlled joining and repeatable fixture-led fabrication.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section id="showcase" class="showcase">
   <div class="section-heading">
-    <p class="eyebrow">Showcase</p>
-    <h2>Visual proof of the kind of work ERK is built for</h2>
+    <p class="eyebrow">Engineering Showcase</p>
+    <h2>Real ERK media, organized into a scalable portfolio of projects, machines, automation, fabrication, and process references</h2>
   </div>
-  <div class="showcase-grid">
-    <article class="showcase-card tall">
-      <img
-        src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80"
-        alt="Team discussing engineering and manufacturing plans"
-      />
-      <div class="showcase-copy">
-        <h3>Design collaboration</h3>
-        <p>Sharper decisions early in the process reduce revisions and speed up production.</p>
+  <div class="showcase-overview">
+    <p class="showcase-lead">
+      These references are drawn from available ERK assets and presented as representative work. More machine
+      types, systems, and production applications can be added as the portfolio expands.
+    </p>
+    <div id="showcase-stats" class="showcase-stats"></div>
+  </div>
+  <div id="showcase-filters" class="showcase-filters" aria-label="Showcase filters"></div>
+
+  <div class="showcase-stack">
+    <div class="showcase-block">
+      <div class="showcase-block-head">
+        <h3>Representative Project Cards</h3>
+        <p>Selected systems that communicate ERK's machine-building and automation capability at a glance.</p>
       </div>
-    </article>
-    <article class="showcase-card">
-      <img
-        src="https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=900&q=80"
-        alt="CNC tooling and machined components"
-      />
-      <div class="showcase-copy">
-        <h3>CNC precision</h3>
-        <p>Complex parts with clean tolerances and dependable finishing.</p>
+      <div id="showcase-root"></div>
+    </div>
+
+    <div class="showcase-block">
+      <div class="showcase-block-head">
+        <h3>Video Showcase</h3>
+        <p>Operational footage for technical review, process understanding, and machine behavior reference.</p>
       </div>
-    </article>
-    <article class="showcase-card">
-      <img
-        src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=900&q=80"
-        alt="3D printed prototype part in a workshop"
-      />
-      <div class="showcase-copy">
-        <h3>Prototype speed</h3>
-        <p>Fast physical validation for startups and product teams under deadline.</p>
+      <div id="video-showcase-root"></div>
+    </div>
+
+    <div class="showcase-block">
+      <div class="showcase-block-head">
+        <h3>Category Galleries</h3>
+        <p>Structured galleries for faster review across machines, automation, fabrication, and project execution.</p>
       </div>
-    </article>
+      <div id="category-showcase-root"></div>
+    </div>
   </div>
 </section>
 
@@ -247,24 +295,24 @@
 <section class="services feature-band">
   <div class="section-heading">
     <p class="eyebrow">Why ERK</p>
-    <h2>Less chaos, more manufacturing confidence</h2>
+    <h2>Why the current body of work supports a broader engineering proposition</h2>
   </div>
   <div class="service-cards">
     <div class="card">
-      <h3>Fast Turnaround</h3>
-      <p>Speed optimized workflows for quick delivery.</p>
+      <h3>Application-Led Builds</h3>
+      <p>The machine names and project visuals point to actual use cases, not generic capability statements.</p>
     </div>
     <div class="card">
-      <h3>Competitive Pricing</h3>
-      <p>Cost-efficient without compromising quality.</p>
+      <h3>Strong Mechanical Focus</h3>
+      <p>ERK's work shows a practical command of fabricated structures, moving systems, and production mechanisms.</p>
     </div>
     <div class="card">
-      <h3>High Precision</h3>
-      <p>Engineering-grade accuracy guaranteed.</p>
+      <h3>Process Awareness</h3>
+      <p>Deburring, facing, punching, labeling, and welding suggest a team that understands floor-level process flow.</p>
     </div>
     <div class="card">
-      <h3>India Focused</h3>
-      <p>Local support with global standards.</p>
+      <h3>Scalable Portfolio Story</h3>
+      <p>The current references establish credibility while leaving room to present a much wider future body of work.</p>
     </div>
   </div>
 </section>
@@ -273,36 +321,36 @@
 <section id="industries" class="services">
   <div class="section-heading">
     <p class="eyebrow">Industries</p>
-    <h2>Supporting teams across products, hardware, and industrial builds</h2>
+    <h2>Best fit for production environments that need custom handling, automation, and machine development</h2>
   </div>
   <div class="service-cards industries-grid">
     <div class="card industry-card">
       <span class="industry-icon">01</span>
-      <h3>Automotive</h3>
-      <p>Functional parts, housings, fixtures, and production support for fast-moving vehicle teams.</p>
+      <h3>Packaging Lines</h3>
+      <p>Machine and conveyor builds for transfer, labeling, product presentation, and line-side packaging operations.</p>
     </div>
     <div class="card industry-card">
       <span class="industry-icon">02</span>
-      <h3>Aerospace</h3>
-      <p>Precision-focused components and controlled manufacturing workflows for critical applications.</p>
+      <h3>Consumer Product Manufacturing</h3>
+      <p>Systems supporting product movement, handling, and inspection where repeatability and pace both matter.</p>
     </div>
     <div class="card industry-card">
       <span class="industry-icon">03</span>
-      <h3>Startups</h3>
-      <p>Prototype-friendly execution for product teams that need speed without losing technical quality.</p>
+      <h3>Fabrication And Welding Shops</h3>
+      <p>SPMs, fixtures, and machine structures for teams building repeatable processes around joining and fabrication.</p>
     </div>
     <div class="card industry-card">
       <span class="industry-icon">04</span>
-      <h3>Consumer Products</h3>
-      <p>From appearance models to scalable manufacturing paths for market-ready hardware products.</p>
+      <h3>Industrial Automation Projects</h3>
+      <p>Custom mechanical and line-side automation where off-the-shelf equipment is not enough for the task.</p>
     </div>
   </div>
 </section>
 
 <section class="cta-panel">
   <div class="cta-panel-copy">
-    <p class="eyebrow">Ready To Build</p>
-    <h2>Share your requirement and let ERK line up the right process, material, and timeline.</h2>
+    <p class="eyebrow">Build With ERK</p>
+    <h2>Share your machine requirement, production challenge, or automation brief and let ERK shape the right system around it.</h2>
   </div>
   <a
     href="https://forms.zohopublic.in/businessenjiniares1/form/ERKQuoteRequestForm/formperma/KaqFTD0n6Zn0AijIp77lfl_2QPXpc9l2-XhBvvEQMwg"
@@ -310,7 +358,7 @@
     rel="noopener noreferrer"
     class="cta-button"
   >
-    Start Your Quote
+    Request A Consultation
   </a>
 </section>
 
@@ -329,6 +377,9 @@
 >
   Chat
 </a>
+
+<script src="scripts/showcase-data.js"></script>
+<script src="scripts/showcase.js"></script>
 
 </body>
 </html>
