@@ -46,9 +46,10 @@
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<main id="site-shell">
+<section class="hero hero-motion" data-page="home">
   <div class="hero-shell">
-    <div class="hero-content">
+    <div class="hero-content hero-depth-copy reveal reveal-up">
       <p class="eyebrow">Special Purpose Machines And Automation</p>
       <h1>ERK engineers production systems for movement, inspection, joining, punching, labeling, and controlled line execution.</h1>
       <p class="hero-copy">
@@ -67,23 +68,23 @@
         <a href="#showcase" class="secondary-button">View ERK Work</a>
       </div>
       <div class="hero-stats">
-        <div class="stat">
+        <div class="stat reveal reveal-up">
           <strong>17</strong>
           <span>catalogued ERK showcase assets</span>
         </div>
-        <div class="stat">
+        <div class="stat reveal reveal-up">
           <strong>SPM</strong>
           <span>special purpose machine focus</span>
         </div>
-        <div class="stat">
+        <div class="stat reveal reveal-up">
           <strong>India</strong>
           <span>engineering, fabrication, and deployment support</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-visual">
-      <article class="visual-card visual-main">
+    <div class="hero-visual hero-depth-visual reveal reveal-right">
+      <article class="visual-card visual-main hero-layer" data-hero-depth="0.18">
         <img
           src="assets/images/food-box-machine.jpg"
           alt="ERK custom food box machine"
@@ -94,14 +95,14 @@
         </div>
       </article>
 
-      <article class="visual-card visual-accent">
+      <article class="visual-card visual-accent hero-layer" data-hero-depth="0.28">
         <img
           src="assets/images/tv-inspecting-conveyor.jpg"
           alt="ERK inspection conveyor system"
         />
       </article>
 
-      <div class="floating-note">
+      <div class="floating-note hero-layer" data-hero-depth="0.34">
         <span class="note-label">ERK Scope</span>
         <strong>Representative systems include machines, conveyors, fabrication platforms, and automation builds</strong>
         <p>These examples show delivered capability, not the full extent of what ERK can engineer.</p>
@@ -110,7 +111,7 @@
   </div>
 </section>
 
-<section class="trust-strip">
+<section class="trust-strip" data-page="home">
   <div class="trust-item">Special purpose machines</div>
   <div class="trust-item">Conveyors and inspection systems</div>
   <div class="trust-item">Automation integration</div>
@@ -118,7 +119,7 @@
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="process" class="services">
+<section id="process" class="services" data-page="home">
   <div class="section-heading">
     <p class="eyebrow">Execution Model</p>
     <h2>How ERK takes an industrial requirement from need statement to working machine</h2>
@@ -143,7 +144,7 @@
 </section>
 
 <!-- SOLUTIONS -->
-<section id="solutions" class="services">
+<section id="solutions" class="services" data-page="home">
   <div class="section-heading">
     <p class="eyebrow">What We Build</p>
     <h2>Engineering solutions shaped around production movement, handling, joining, and inspection</h2>
@@ -172,7 +173,7 @@
   </div>
 </section>
 
-<section class="capabilities">
+<section class="capabilities" data-page="home">
   <div class="capabilities-copy">
     <p class="eyebrow">Engineering Depth</p>
     <h2>These showcased systems reflect ERK capability, while the engineering scope extends well beyond the current media library.</h2>
@@ -217,7 +218,7 @@
   </div>
 </section>
 
-<section id="projects" class="showcase project-spotlights">
+<section id="projects" class="showcase project-spotlights" data-page="home">
   <div class="section-heading">
     <p class="eyebrow">Selected Work</p>
     <h2>Representative systems that demonstrate ERK's current execution standard</h2>
@@ -250,7 +251,48 @@
   </div>
 </section>
 
-<section id="showcase" class="showcase">
+<section id="experience" class="experience-strip" data-page="home">
+  <div class="section-heading reveal reveal-up">
+    <p class="eyebrow">Scroll Experience</p>
+    <h2>Move through ERK capability as the visuals shift with the story</h2>
+  </div>
+  <div class="experience-shell">
+    <div class="experience-visual sticky-stage reveal reveal-left">
+      <div id="experience-stage" class="experience-stage"></div>
+    </div>
+    <div id="experience-steps" class="experience-steps"></div>
+  </div>
+</section>
+
+<section class="story-launchpad" data-page="home">
+  <div class="section-heading">
+    <p class="eyebrow">Dynamic Pages</p>
+    <h2>Step into interactive machine stories built directly from the ERK portfolio</h2>
+  </div>
+  <div class="story-launchpad-shell">
+    <div class="story-launchpad-copy">
+      <p>
+        Each ERK asset can now open as its own immersive story page with a stronger visual identity,
+        highlighted capabilities, engineering context, and related systems for deeper browsing.
+      </p>
+      <a href="#dynamic-pages" class="secondary-button">Browse Dynamic Pages</a>
+    </div>
+    <div class="story-launchpad-panel">
+      <span class="story-panel-kicker">New Experience Layer</span>
+      <strong>Single-page routing, rich project storytelling, and category-aware visual themes.</strong>
+    </div>
+  </div>
+</section>
+
+<section id="dynamic-pages" class="showcase dynamic-page-gallery" data-page="home">
+  <div class="section-heading">
+    <p class="eyebrow">Project Stories</p>
+    <h2>Every machine, process, and automation asset can open as a dedicated ERK experience page</h2>
+  </div>
+  <div id="story-grid-root"></div>
+</section>
+
+<section id="showcase" class="showcase" data-page="home">
   <div class="section-heading">
     <p class="eyebrow">Engineering Showcase</p>
     <h2>Real ERK media, organized into a scalable portfolio of projects, machines, automation, fabrication, and process references</h2>
@@ -292,7 +334,7 @@
 </section>
 
 <!-- WHY ERK -->
-<section class="services feature-band">
+<section class="services feature-band" data-page="home">
   <div class="section-heading">
     <p class="eyebrow">Why ERK</p>
     <h2>Why the current body of work supports a broader engineering proposition</h2>
@@ -318,7 +360,7 @@
 </section>
 
 <!-- INDUSTRIES -->
-<section id="industries" class="services">
+<section id="industries" class="services" data-page="home">
   <div class="section-heading">
     <p class="eyebrow">Industries</p>
     <h2>Best fit for production environments that need custom handling, automation, and machine development</h2>
@@ -347,7 +389,7 @@
   </div>
 </section>
 
-<section class="cta-panel">
+<section class="cta-panel" data-page="home">
   <div class="cta-panel-copy">
     <p class="eyebrow">Build With ERK</p>
     <h2>Share your machine requirement, production challenge, or automation brief and let ERK shape the right system around it.</h2>
@@ -361,6 +403,11 @@
     Request A Consultation
   </a>
 </section>
+
+<section id="detail-page" class="detail-page is-hidden" data-page="detail" aria-live="polite">
+  <div id="detail-root"></div>
+</section>
+</main>
 
 <!-- FOOTER -->
 <footer>
