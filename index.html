@@ -7,12 +7,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/future.css" />
 </head>
 <body>
+<div id="page-loader" class="page-loader" aria-hidden="true">
+  <div class="loader-mark"></div>
+  <div class="loader-copy">
+    <span>ERK</span>
+    <strong>Calibrating Motion Systems</strong>
+  </div>
+</div>
+<div id="route-overlay" class="route-overlay" aria-hidden="true"></div>
+<div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+<div id="cursor-halo" class="cursor-halo" aria-hidden="true"></div>
+<div id="cursor-dot" class="cursor-dot" aria-hidden="true"></div>
+<div class="site-aura" aria-hidden="true">
+  <span class="aura aura-one"></span>
+  <span class="aura aura-two"></span>
+  <span class="aura aura-three"></span>
+  <span class="aura aura-grid"></span>
+</div>
 
 <!-- NAVBAR -->
 <header>
@@ -24,11 +41,17 @@
         <span>Precision manufacturing partner</span>
       </span>
     </a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-utilities">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle color theme">
+        <span class="theme-toggle-orb"></span>
+        <span class="theme-toggle-copy">Theme</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
     <ul class="nav-links" id="site-navigation">
       <li><a href="#">Home</a></li>
       <li><a href="#solutions">Solutions</a></li>
@@ -51,6 +74,11 @@
   <div class="hero-shell">
     <div class="hero-content hero-depth-copy reveal reveal-up">
       <p class="eyebrow">Special Purpose Machines And Automation</p>
+      <div class="hero-kicker-band">
+        <span>Industrial Motion</span>
+        <span>Scientific Control</span>
+        <span>Custom Build Logic</span>
+      </div>
       <h1>ERK engineers production systems for movement, inspection, joining, punching, labeling, and controlled line execution.</h1>
       <p class="hero-copy">
         We design and manufacture custom machines, conveyors, fabrication systems, and automation solutions
@@ -66,6 +94,29 @@
           Discuss Your Requirement
         </a>
         <a href="#showcase" class="secondary-button">View ERK Work</a>
+      </div>
+      <div class="hero-signal-line" aria-hidden="true"></div>
+      <div class="hero-diagnostics reveal reveal-up" aria-label="ERK engineering telemetry">
+        <div class="diagnostic-shell">
+          <div class="diagnostic-head">
+            <span class="diagnostic-tag">Engineering Telemetry</span>
+            <span class="diagnostic-status">Build-ready</span>
+          </div>
+          <div class="diagnostic-grid">
+            <div class="diagnostic-readout">
+              <span>Domain</span>
+              <strong>SPM + Automation</strong>
+            </div>
+            <div class="diagnostic-readout">
+              <span>Focus</span>
+              <strong>Motion / Joining / Inspection</strong>
+            </div>
+            <div class="diagnostic-readout">
+              <span>Method</span>
+              <strong>Design, Fabricate, Validate</strong>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="hero-stats">
         <div class="stat reveal reveal-up">
@@ -84,6 +135,11 @@
     </div>
 
     <div class="hero-visual hero-depth-visual reveal reveal-right">
+      <div class="hero-orbit" aria-hidden="true">
+        <span class="orbit-ring orbit-ring-a"></span>
+        <span class="orbit-ring orbit-ring-b"></span>
+        <span class="orbit-core"></span>
+      </div>
       <article class="visual-card visual-main hero-layer" data-hero-depth="0.18">
         <img
           src="assets/images/food-box-machine.jpg"

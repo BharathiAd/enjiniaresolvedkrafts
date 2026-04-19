@@ -16,6 +16,12 @@
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelectorAll(".nav-links a");
   const homeSections = Array.from(document.querySelectorAll("[data-page='home']"));
+  const pageLoader = document.getElementById("page-loader");
+  const routeOverlay = document.getElementById("route-overlay");
+  const scrollProgress = document.getElementById("scroll-progress");
+  const themeToggle = document.getElementById("theme-toggle");
+  const cursorHalo = document.getElementById("cursor-halo");
+  const cursorDot = document.getElementById("cursor-dot");
 
   if (
     !items.length ||
@@ -30,6 +36,10 @@
     !detailPage ||
     !detailRoot
   ) {
+    enableThemeToggle();
+    enableScrollProgress();
+    enableCursorEffects();
+    finishLoading();
     return;
   }
 
@@ -53,6 +63,102 @@
       node.textContent = text;
     }
     return node;
+  }
+
+  function finishLoading() {
+    const markLoaded = () => {
+      document.body.classList.add("is-loaded");
+      if (pageLoader) {
+        pageLoader.setAttribute("aria-hidden", "true");
+      }
+    };
+
+    if (document.readyState === "complete") {
+      window.requestAnimationFrame(markLoaded);
+      return;
+    }
+
+    window.addEventListener("load", () => {
+      window.requestAnimationFrame(markLoaded);
+    }, { once: true });
+
+    window.setTimeout(markLoaded, 1200);
+  }
+
+  function triggerRouteOverlay() {
+    if (!routeOverlay) {
+      return;
+    }
+
+    document.body.classList.add("is-routing");
+    window.setTimeout(() => {
+      document.body.classList.remove("is-routing");
+    }, 320);
+  }
+
+  function enableThemeToggle() {
+    if (!themeToggle) {
+      return;
+    }
+
+    const storageKey = "erk-theme";
+    const root = document.documentElement;
+    const savedTheme = window.localStorage.getItem(storageKey);
+    if (savedTheme === "light" || savedTheme === "dark") {
+      root.setAttribute("data-theme", savedTheme);
+      themeToggle.setAttribute("aria-pressed", String(savedTheme === "light"));
+    }
+
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", nextTheme);
+      themeToggle.setAttribute("aria-pressed", String(nextTheme === "light"));
+      window.localStorage.setItem(storageKey, nextTheme);
+    });
+  }
+
+  function enableScrollProgress() {
+    if (!scrollProgress) {
+      return;
+    }
+
+    const updateProgress = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+      scrollProgress.style.transform = `scaleX(${ratio.toFixed(3)})`;
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+  }
+
+  function enableCursorEffects() {
+    if (!cursorHalo || !cursorDot) {
+      return;
+    }
+
+    const supportsFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!supportsFinePointer || prefersReducedMotion) {
+      return;
+    }
+
+    const moveCursor = (event) => {
+      cursorHalo.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      cursorDot.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      document.body.classList.add("cursor-active");
+    };
+
+    document.addEventListener("pointermove", moveCursor, { passive: true });
+    document.addEventListener("pointerleave", () => {
+      document.body.classList.remove("cursor-active", "cursor-linking");
+    });
+    document.addEventListener("pointerover", (event) => {
+      const interactive = event.target.closest("a, button, .tilt-surface");
+      document.body.classList.toggle("cursor-linking", Boolean(interactive));
+    });
   }
 
   function themeFor(item) {
@@ -439,6 +545,69 @@
     window.addEventListener("resize", requestTick);
   }
 
+  function enableTiltSurfaces(scope) {
+    const root = scope || document;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const supportsHoverTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const selector = [
+      ".stat",
+      ".card",
+      ".capability-panel",
+      ".spotlight-panel",
+      ".experience-stage",
+      ".experience-step",
+      ".showcase-block",
+      ".media-card",
+      ".story-launchpad-copy",
+      ".story-launchpad-panel",
+      ".cta-panel",
+      ".detail-copy",
+      ".detail-visual",
+      ".detail-metric-card",
+      ".detail-narrative",
+      ".detail-progression",
+      ".detail-nav-link"
+    ].join(", ");
+
+    const surfaces = Array.from(root.querySelectorAll(selector));
+    surfaces.forEach((surface) => {
+      surface.classList.add("tilt-surface");
+      if (surface.dataset.tiltBound === "true") {
+        return;
+      }
+
+      surface.dataset.tiltBound = "true";
+      if (prefersReducedMotion || !supportsHoverTilt) {
+        return;
+      }
+
+      const applyTilt = (event) => {
+        if (event.pointerType === "touch") {
+          return;
+        }
+
+        const rect = surface.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * 14;
+        const rotateX = (0.5 - y) * 12;
+        const translateX = surface.classList.contains("experience-step") && surface.classList.contains("is-active") ? 10 : 0;
+        const translateY = surface.classList.contains("experience-step") ? -2 : -8;
+        const translateZ = surface.classList.contains("experience-stage") ? 12 : 20;
+
+        surface.style.transform = `perspective(1400px) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+      };
+
+      const resetTilt = () => {
+        surface.style.transform = "";
+      };
+
+      surface.addEventListener("pointermove", applyTilt);
+      surface.addEventListener("pointerleave", resetTilt);
+      surface.addEventListener("pointercancel", resetTilt);
+    });
+  }
+
   function setPageMode(mode) {
     const detailMode = mode === "detail";
     homeSections.forEach((section) => section.classList.toggle("is-hidden", detailMode));
@@ -524,6 +693,7 @@
 
     shell.append(masthead, metrics, insights, rail, relatedSection);
     detailRoot.appendChild(shell);
+    enableTiltSurfaces(detailRoot);
     setPageMode("detail");
     document.title = `${item.name} | ERK`;
     enableLazyVideos();
@@ -541,11 +711,13 @@
   }
 
   function navigateToDetail(slug) {
+    triggerRouteOverlay();
     history.pushState({ page: slug }, "", `?page=${encodeURIComponent(slug)}`);
     renderDetailPage(slug);
   }
 
   function navigateHome(hash) {
+    triggerRouteOverlay();
     const suffix = hash || "";
     history.pushState({ page: null }, "", `${window.location.pathname}${suffix}`);
     showHomePage();
@@ -612,11 +784,15 @@
   renderFilters();
   renderHomeCollections();
   renderExperienceStrip();
+  enableThemeToggle();
+  enableScrollProgress();
+  enableCursorEffects();
   applyFilter("All");
   enableLazyVideos();
   enableExperienceScroll();
   enableRevealEffects();
   enableHeroMotion();
+  enableTiltSurfaces();
   bindRoutes();
   enableMobileNav();
 
@@ -624,4 +800,6 @@
   if (initialRoute) {
     renderDetailPage(initialRoute);
   }
+
+  finishLoading();
 })();
