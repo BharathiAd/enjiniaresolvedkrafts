@@ -1,16 +1,12 @@
 (function () {
   const items = Array.isArray(window.showcaseItems) ? window.showcaseItems : [];
-  const showcaseRoot = document.getElementById("showcase-root");
-  const storyGridRoot = document.getElementById("story-grid-root");
+  const showcaseGridRoot = document.getElementById("showcase-grid-root");
   const experienceStage = document.getElementById("experience-stage");
   const experienceSteps = document.getElementById("experience-steps");
-  const videoRoot = document.getElementById("video-showcase-root");
-  const categoryRoot = document.getElementById("category-showcase-root");
   const statsRoot = document.getElementById("showcase-stats");
   const filterRoot = document.getElementById("showcase-filters");
   const detailPage = document.getElementById("detail-page");
   const detailRoot = document.getElementById("detail-root");
-  const heroSection = document.querySelector(".hero-motion");
   const navbar = document.querySelector(".navbar");
   const logoLink = document.querySelector(".logo");
   const navToggle = document.querySelector(".nav-toggle");
@@ -19,32 +15,25 @@
   const pageLoader = document.getElementById("page-loader");
   const routeOverlay = document.getElementById("route-overlay");
   const scrollProgress = document.getElementById("scroll-progress");
-  const themeToggle = document.getElementById("theme-toggle");
-  const cursorHalo = document.getElementById("cursor-halo");
-  const cursorDot = document.getElementById("cursor-dot");
 
   if (
     !items.length ||
-    !showcaseRoot ||
-    !storyGridRoot ||
+    !showcaseGridRoot ||
     !experienceStage ||
     !experienceSteps ||
-    !videoRoot ||
-    !categoryRoot ||
     !statsRoot ||
     !filterRoot ||
     !detailPage ||
     !detailRoot
   ) {
-    enableThemeToggle();
     enableScrollProgress();
-    enableCursorEffects();
     finishLoading();
     return;
   }
 
-  const categoryOrder = ["Projects", "Machines", "Automation", "Manufacturing Process", "Fabrication", "Tools", "Others"];
+  const categoryOrder = ["Engineering Design", "Projects", "Machines", "Automation", "Manufacturing Process", "Fabrication", "Tools", "Others"];
   const themes = {
+    "Engineering Design": { tone: "3D Engineering Concept", glow: "#ffd347", gradient: "linear-gradient(135deg, rgba(255, 211, 71, 0.4), rgba(20, 16, 0, 0.9))" },
     Projects: { tone: "Integrated Build Story", glow: "#f7941d", gradient: "linear-gradient(135deg, rgba(247, 148, 29, 0.42), rgba(18, 61, 106, 0.85))" },
     Machines: { tone: "Purpose-Built Machinery", glow: "#ff8f4c", gradient: "linear-gradient(135deg, rgba(255, 122, 24, 0.4), rgba(92, 25, 8, 0.88))" },
     Automation: { tone: "Motion And Line Control", glow: "#26d0ce", gradient: "linear-gradient(135deg, rgba(38, 208, 206, 0.42), rgba(17, 40, 86, 0.9))" },
@@ -96,27 +85,6 @@
     }, 320);
   }
 
-  function enableThemeToggle() {
-    if (!themeToggle) {
-      return;
-    }
-
-    const storageKey = "erk-theme";
-    const root = document.documentElement;
-    const savedTheme = window.localStorage.getItem(storageKey);
-    if (savedTheme === "light" || savedTheme === "dark") {
-      root.setAttribute("data-theme", savedTheme);
-      themeToggle.setAttribute("aria-pressed", String(savedTheme === "light"));
-    }
-
-    themeToggle.addEventListener("click", () => {
-      const nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-      root.setAttribute("data-theme", nextTheme);
-      themeToggle.setAttribute("aria-pressed", String(nextTheme === "light"));
-      window.localStorage.setItem(storageKey, nextTheme);
-    });
-  }
-
   function enableScrollProgress() {
     if (!scrollProgress) {
       return;
@@ -134,33 +102,6 @@
     window.addEventListener("resize", updateProgress);
   }
 
-  function enableCursorEffects() {
-    if (!cursorHalo || !cursorDot) {
-      return;
-    }
-
-    const supportsFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!supportsFinePointer || prefersReducedMotion) {
-      return;
-    }
-
-    const moveCursor = (event) => {
-      cursorHalo.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-      cursorDot.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
-      document.body.classList.add("cursor-active");
-    };
-
-    document.addEventListener("pointermove", moveCursor, { passive: true });
-    document.addEventListener("pointerleave", () => {
-      document.body.classList.remove("cursor-active", "cursor-linking");
-    });
-    document.addEventListener("pointerover", (event) => {
-      const interactive = event.target.closest("a, button, .tilt-surface");
-      document.body.classList.toggle("cursor-linking", Boolean(interactive));
-    });
-  }
-
   function themeFor(item) {
     return themes[item.category] || themes.Others;
   }
@@ -168,19 +109,24 @@
   function detailModel(item) {
     const theme = themeFor(item);
     const categoryLower = item.category.toLowerCase();
+    const isConcept = item.category === "Engineering Design";
     return {
       ...item,
       theme,
-      summary: `${item.name} reflects ERK's ${categoryLower} capability with a production-first approach to machine behavior, build quality, and floor-level practicality.`,
-      impact: `This reference helps position ERK as a partner for teams that need custom ${categoryLower}, stronger execution clarity, and equipment shaped around real manufacturing requirements.`,
+      summary: isConcept
+        ? `${item.name} is a 3D engineering concept, showing how ERK works out a machine's structure and motion before any metal is cut.`
+        : `${item.name} reflects ERK's ${categoryLower} capability, with a production-first approach to machine behaviour, build quality, and floor-level practicality.`,
+      impact: isConcept
+        ? "This concept shows how ERK plans a build: mechanism, motion, and structure worked out in 3D before fabrication starts."
+        : `This reference helps show ERK as a partner for teams that need custom ${categoryLower}, clear execution, and equipment shaped around real manufacturing needs.`,
       metrics: [
-        item.type === "video" ? "Operational proof" : "Build clarity",
+        isConcept ? "Design clarity" : item.type === "video" ? "Operational proof" : "Build clarity",
         item.category === "Automation" ? "Flow control" : "Execution confidence",
         item.category === "Manufacturing Process" ? "Process consistency" : "Production readiness"
       ],
       capabilities: [
         item.category,
-        item.type === "video" ? "Machine operation" : "Delivered build",
+        isConcept ? "3D engineering" : item.type === "video" ? "Machine operation" : "Delivered build",
         "Custom engineering"
       ]
     };
@@ -210,31 +156,23 @@
     return wrap;
   }
 
-  function card(item, variant) {
-    const article = el("article", "media-card");
+  function card(item) {
+    const article = el("article", "media-card story-card");
     article.setAttribute("data-category", item.category);
-    if (variant) {
-      article.classList.add(`${variant}-card`);
-    }
-    if (variant === "story") {
-      article.classList.add("story-card");
-    }
 
     const body = el("div", "media-card-body");
     body.append(
       el("span", "media-category-pill", item.category),
       el("h3", "", item.name),
-      el("p", "", variant === "story" ? detailModel(item).summary : item.description)
+      el("p", "", item.description)
     );
 
-    if (variant === "story") {
-      const footer = el("div", "story-card-footer");
-      const link = el("a", "story-link", "Open Story Page");
-      link.href = `?page=${encodeURIComponent(item.slug)}`;
-      link.setAttribute("data-route", item.slug);
-      footer.append(el("span", "story-tone", themeFor(item).tone), link);
-      body.appendChild(footer);
-    }
+    const footer = el("div", "story-card-footer");
+    const link = el("a", "story-link", "View Project Page");
+    link.href = `?page=${encodeURIComponent(item.slug)}`;
+    link.setAttribute("data-route", item.slug);
+    footer.append(el("span", "story-tone", themeFor(item).tone), link);
+    body.appendChild(footer);
 
     article.append(mediaVisual(item), body);
     return article;
@@ -248,20 +186,16 @@
     const head = el("div", "category-section-head");
     head.append(el("h3", "", category), el("span", "category-count", `${entries.length} item${entries.length === 1 ? "" : "s"}`));
 
-    const grid = el("div", entries.every((entry) => entry.type === "video") ? "video-grid" : "media-grid");
+    const grid = el("div", "media-grid");
     entries.forEach((entry) => grid.appendChild(card(entry)));
     section.append(head, grid);
     return section;
   }
 
-  function groupByCategory(collection, skipCategories) {
-    const skip = new Set(skipCategories || []);
+  function groupByCategory(collection) {
     const groups = new Map();
 
     collection.forEach((item) => {
-      if (skip.has(item.category)) {
-        return;
-      }
       if (!groups.has(item.category)) {
         groups.set(item.category, []);
       }
@@ -306,7 +240,6 @@
     currentFilter = filterValue;
     const cards = Array.from(document.querySelectorAll(".media-card"));
     const sections = Array.from(document.querySelectorAll(".category-section"));
-    const blocks = Array.from(document.querySelectorAll(".showcase-block"));
     const chips = Array.from(document.querySelectorAll(".filter-chip"));
 
     chips.forEach((chip) => chip.classList.toggle("is-active", chip.getAttribute("data-filter") === filterValue));
@@ -317,15 +250,12 @@
     sections.forEach((section) => {
       section.classList.toggle("is-hidden", section.querySelectorAll(".media-card:not(.is-hidden)").length === 0);
     });
-    blocks.forEach((block) => {
-      block.classList.toggle("is-hidden", block.querySelectorAll(".media-card:not(.is-hidden)").length === 0);
-    });
   }
 
   function renderStats() {
     const stats = [
-      { value: items.length, label: "structured media assets" },
-      { value: items.filter((item) => item.type === "image").length, label: "image references" },
+      { value: items.length, label: "catalogued ERK references" },
+      { value: items.filter((item) => item.category === "Engineering Design").length, label: "engineering design concepts" },
       { value: items.filter((item) => item.type === "video").length, label: "process videos" },
       { value: new Set(items.map((item) => item.category)).size, label: "portfolio categories" }
     ];
@@ -351,24 +281,9 @@
     });
   }
 
-  function renderHomeCollections() {
-    const featuredGrid = el("div", "project-grid");
-    items.filter((item) => item.featured).forEach((item) => featuredGrid.appendChild(card(item, "project")));
-    showcaseRoot.appendChild(featuredGrid);
-
-    const storyGrid = el("div", "story-grid");
-    items.forEach((item) => storyGrid.appendChild(card(item, "story")));
-    storyGridRoot.appendChild(storyGrid);
-
-    groupByCategory(items.filter((item) => item.type === "video")).forEach(([category, entries]) => {
-      videoRoot.appendChild(categorySection(category, entries));
-    });
-
-    const imageItems = items.filter((item) => item.type === "image");
-    groupByCategory(imageItems, ["Projects"]).forEach(([category, entries]) => {
-      if (entries.length) {
-        categoryRoot.appendChild(categorySection(category, entries));
-      }
+  function renderShowcaseGrid() {
+    groupByCategory(items).forEach(([category, entries]) => {
+      showcaseGridRoot.appendChild(categorySection(category, entries));
     });
   }
 
@@ -398,7 +313,7 @@
       panel.append(visual, overlay);
       experienceStage.appendChild(panel);
 
-      const step = el("article", "experience-step reveal reveal-right");
+      const step = el("article", "experience-step reveal reveal-up");
       step.setAttribute("data-experience-step", item.slug);
       if (index === 0) {
         step.classList.add("is-active");
@@ -406,7 +321,7 @@
 
       const stepIndex = el("span", "experience-index", `0${index + 1}`);
       const body = el("div", "experience-step-body");
-      const openLink = el("a", "story-link", "View Project Story");
+      const openLink = el("a", "story-link", "View Project Page");
       openLink.href = `?page=${encodeURIComponent(item.slug)}`;
       openLink.setAttribute("data-route", item.slug);
       body.append(
@@ -497,117 +412,6 @@
     revealNodes.forEach((node) => observer.observe(node));
   }
 
-  function enableHeroMotion() {
-    if (!heroSection) {
-      return;
-    }
-
-    const layers = Array.from(heroSection.querySelectorAll("[data-hero-depth]"));
-    const content = heroSection.querySelector(".hero-depth-copy");
-    const visual = heroSection.querySelector(".hero-depth-visual");
-    let ticking = false;
-
-    function updateHeroMotion() {
-      ticking = false;
-      const rect = heroSection.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      const progress = Math.min(Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0), 1);
-      const translateBase = Math.max(window.scrollY * 0.06, 0);
-
-      heroSection.style.setProperty("--hero-progress", progress.toFixed(3));
-
-      if (content) {
-        content.style.transform = `translate3d(0, ${translateBase * -0.2}px, 0)`;
-      }
-
-      if (visual) {
-        visual.style.transform = `translate3d(0, ${translateBase * 0.12}px, 0)`;
-      }
-
-      layers.forEach((layer) => {
-        const depth = Number(layer.getAttribute("data-hero-depth")) || 0.2;
-        const y = translateBase * depth * -1;
-        const rotate = (progress - 0.5) * depth * 8;
-        layer.style.transform = `translate3d(0, ${y}px, 0) rotate(${rotate}deg)`;
-      });
-    }
-
-    function requestTick() {
-      if (ticking) {
-        return;
-      }
-      ticking = true;
-      window.requestAnimationFrame(updateHeroMotion);
-    }
-
-    updateHeroMotion();
-    window.addEventListener("scroll", requestTick, { passive: true });
-    window.addEventListener("resize", requestTick);
-  }
-
-  function enableTiltSurfaces(scope) {
-    const root = scope || document;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const supportsHoverTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const selector = [
-      ".stat",
-      ".card",
-      ".capability-panel",
-      ".spotlight-panel",
-      ".experience-stage",
-      ".experience-step",
-      ".showcase-block",
-      ".media-card",
-      ".story-launchpad-copy",
-      ".story-launchpad-panel",
-      ".cta-panel",
-      ".detail-copy",
-      ".detail-visual",
-      ".detail-metric-card",
-      ".detail-narrative",
-      ".detail-progression",
-      ".detail-nav-link"
-    ].join(", ");
-
-    const surfaces = Array.from(root.querySelectorAll(selector));
-    surfaces.forEach((surface) => {
-      surface.classList.add("tilt-surface");
-      if (surface.dataset.tiltBound === "true") {
-        return;
-      }
-
-      surface.dataset.tiltBound = "true";
-      if (prefersReducedMotion || !supportsHoverTilt) {
-        return;
-      }
-
-      const applyTilt = (event) => {
-        if (event.pointerType === "touch") {
-          return;
-        }
-
-        const rect = surface.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
-        const rotateY = (x - 0.5) * 14;
-        const rotateX = (0.5 - y) * 12;
-        const translateX = surface.classList.contains("experience-step") && surface.classList.contains("is-active") ? 10 : 0;
-        const translateY = surface.classList.contains("experience-step") ? -2 : -8;
-        const translateZ = surface.classList.contains("experience-stage") ? 12 : 20;
-
-        surface.style.transform = `perspective(1400px) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
-      };
-
-      const resetTilt = () => {
-        surface.style.transform = "";
-      };
-
-      surface.addEventListener("pointermove", applyTilt);
-      surface.addEventListener("pointerleave", resetTilt);
-      surface.addEventListener("pointercancel", resetTilt);
-    });
-  }
-
   function setPageMode(mode) {
     const detailMode = mode === "detail";
     homeSections.forEach((section) => section.classList.toggle("is-hidden", detailMode));
@@ -636,10 +440,10 @@
     const masthead = el("section", "detail-masthead");
     const copy = el("div", "detail-copy");
     const back = el("a", "detail-back-link", "Back To Overview");
-    back.href = "index.html#dynamic-pages";
+    back.href = "index.html#work";
     back.addEventListener("click", (event) => {
       event.preventDefault();
-      navigateHome("#dynamic-pages");
+      navigateHome("#work");
     });
 
     const caps = el("div", "detail-capabilities");
@@ -666,12 +470,12 @@
 
     const insights = el("section", "detail-insights");
     const left = el("article", "detail-narrative");
-    left.append(el("span", "detail-section-label", item.category), el("h2", "", "Why this ERK page matters"), el("p", "", item.impact));
+    left.append(el("span", "detail-section-label", item.category), el("h2", "", "Why this page matters"), el("p", "", item.impact));
     const right = el("article", "detail-progression");
     right.append(
       el("span", "detail-section-label", "Engineering Signal"),
-      el("h3", "", "What this project communicates"),
-      el("p", "", `${item.name} gives buyers a clearer view into ERK's ability to turn application-led requirements into practical machine outcomes.`)
+      el("h3", "", "What this shows about ERK"),
+      el("p", "", `${item.name} gives you a clearer view into how ERK turns a requirement into a practical, working machine.`)
     );
     insights.append(left, right);
 
@@ -686,14 +490,13 @@
 
     const relatedSection = el("section", "detail-related");
     const relatedHead = el("div", "detail-section-head");
-    relatedHead.append(el("span", "detail-section-label", "Related ERK Pages"), el("h3", "", "Explore similar systems and adjacent references"));
+    relatedHead.append(el("span", "detail-section-label", "Related ERK Pages"), el("h3", "", "Explore similar systems and nearby references"));
     const relatedGrid = el("div", "detail-related-grid");
-    related.forEach((entry) => relatedGrid.appendChild(card(entry, "story")));
+    related.forEach((entry) => relatedGrid.appendChild(card(entry)));
     relatedSection.append(relatedHead, relatedGrid);
 
     shell.append(masthead, metrics, insights, rail, relatedSection);
     detailRoot.appendChild(shell);
-    enableTiltSurfaces(detailRoot);
     setPageMode("detail");
     document.title = `${item.name} | ERK`;
     enableLazyVideos();
@@ -782,17 +585,13 @@
 
   renderStats();
   renderFilters();
-  renderHomeCollections();
+  renderShowcaseGrid();
   renderExperienceStrip();
-  enableThemeToggle();
   enableScrollProgress();
-  enableCursorEffects();
   applyFilter("All");
   enableLazyVideos();
   enableExperienceScroll();
   enableRevealEffects();
-  enableHeroMotion();
-  enableTiltSurfaces();
   bindRoutes();
   enableMobileNav();
 

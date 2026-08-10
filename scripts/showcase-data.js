@@ -168,5 +168,65 @@ window.showcaseItems = [
     description:
       "Inspection conveyor solution configured for smooth product travel, operator visibility, and reliable in-line quality checks.",
     path: "assets/images/tv-inspecting-conveyor.jpg"
+  },
+  {
+    name: "Robotic Welding Cell",
+    slug: "robotic-welding-cell",
+    category: "Engineering Design",
+    type: "image",
+    featured: true,
+    description:
+      "3D engineering concept for a six-axis robotic welding cell, with a cylindrical workpiece held on a rotary positioner for controlled, repeatable joining.",
+    path: "assets/images/robotic-welding-cell.jpg"
+  },
+  {
+    name: "Product Lifter - Celkon Line",
+    slug: "product-lifter-celkon",
+    category: "Engineering Design",
+    type: "image",
+    featured: true,
+    description:
+      "Engineering design for a chain-driven vertical lifter, built to move a component carrier cleanly between levels on a guided column frame.",
+    path: "assets/images/product-lifter-celkon.jpg"
+  },
+  {
+    name: "Incline Belt Lifter - KCM Line",
+    slug: "incline-belt-lifter-kcm",
+    category: "Engineering Design",
+    type: "image",
+    featured: false,
+    description:
+      "Engineering concept for a guided elevator column carrying an inclined belt conveyor, designed to lift product between stations without manual handling.",
+    path: "assets/images/incline-belt-lifter-kcm.jpg"
+  },
+  {
+    name: "Bench Welding Station - Concept 01",
+    slug: "bench-welding-station-01",
+    category: "Engineering Design",
+    type: "image",
+    featured: false,
+    description:
+      "Design study for a compact benchtop welding and assembly station, with a motorised linear axis and indexing head sized for small precision parts.",
+    path: "assets/images/bench-welding-station-1.jpg"
+  },
+  {
+    name: "Bench Welding Station - Concept 02",
+    slug: "bench-welding-station-02",
+    category: "Engineering Design",
+    type: "image",
+    featured: false,
+    description:
+      "Alternate angle of the benchtop welding station concept, showing the gantry frame, pneumatic cylinder, and fixture layout planned for the build.",
+    path: "assets/images/bench-welding-station-2.jpg"
+  },
+  {
+    name: "Line-Side Status Board",
+    slug: "line-side-status-board",
+    category: "Engineering Design",
+    type: "image",
+    featured: false,
+    description:
+      "Design for a pole-mounted andon board, pairing a display screen with a stack light so operators can read line status at a glance.",
+    path: "assets/images/line-side-status-board.jpg"
   }
 ];
