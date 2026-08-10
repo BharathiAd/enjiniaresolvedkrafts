@@ -6,9 +6,9 @@
     title: "Vertical Product Lifter",
     tag: "Material Handling",
     image: "assets/images/product-lifter-celkon.jpg",
-    ar: 0.511,
-    plate: "#ffffff",
-    blurb: "A chain-driven lifter moves a component carrier up and down a guided frame, transferring product between two levels without manual handling."
+    ar: 0.75,
+    plate: "#f2f2f2",
+    blurb: "Moving product between levels by hand slows a line and risks damage. This chain-driven lifter transfers components between production levels on a guided frame, removing the manual step and keeping material flowing at line pace."
   };
 
   var row = [
@@ -16,29 +16,29 @@
       title: "Incline Belt Lifter",
       tag: "Material Handling",
       image: "assets/images/incline-belt-lifter-kcm.jpg",
-      ar: 0.562,
-      plate: "#efefef",
-      blurb: "A guided column carries an angled belt conveyor, raising product between stations on a continuous run."
+      ar: 0.75,
+      plate: "#f2f2f2",
+      blurb: "Raises product to the next station on a continuous run, so feeding stays steady and operators are not lifting between levels."
     },
     {
       title: "Bench Welding Station",
       tag: "Fabrication",
       image: "assets/images/bench-welding-station-1.jpg",
-      ar: 0.66,
-      plate: "#ededed",
-      blurb: "A compact gantry station with a motorised axis and indexing head, sized for small, precise parts."
+      ar: 0.75,
+      plate: "#f2f2f2",
+      blurb: "A motorised axis and indexing head hold small parts in the same position every cycle, so weld quality stops depending on the operator."
     }
   ];
 
   /* Second view of the same bench station. Shown as its own reversed band so
      it reads as a detail of that project, not a duplicate tile in the grid. */
   var closer = {
-    title: "Gantry And Fixture Detail",
+    title: "Gantry and Fixture Detail",
     tag: "Fabrication",
     image: "assets/images/bench-welding-station-2.jpg",
-    ar: 0.745,
-    plate: "#ededed",
-    blurb: "The same welding station from another angle, showing the gantry frame, pneumatic cylinder and fixture layout that hold the part square through the weld."
+    ar: 0.75,
+    plate: "#f2f2f2",
+    blurb: "The same station from another angle. The gantry frame, pneumatic cylinder and fixture hold the part square through the weld, which is what makes the result repeatable rather than skill-dependent."
   };
 
   function el(tag, cls) {
@@ -68,7 +68,9 @@
     tag.textContent = item.tag;
     var h = el("h3");
     h.textContent = item.title;
-    m.append(tag, h);
+    var p = el("p");
+    p.textContent = item.blurb;
+    m.append(tag, h, p);
     return m;
   }
 
@@ -89,7 +91,9 @@
     copy.append(tag, h3, p, link);
 
     var visual = el("div", "work-feature-visual");
-    var pl = plate(item, "70vh");
+    /* Height cap comes from CSS so it stays responsive. Passing it here would
+       set an inline custom property that overrides the stylesheet. */
+    var pl = plate(item);
     pl.style.cursor = "pointer";
     pl.addEventListener("click", function () { open(item); });
     visual.appendChild(pl);
