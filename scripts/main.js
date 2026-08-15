@@ -41,6 +41,21 @@
     blurb: "The same station from another angle. The gantry frame, pneumatic cylinder and fixture hold the part square through the weld, which is what makes the result repeatable rather than skill-dependent."
   };
 
+  /* Team, rendered alphabetically by name (sorted at render time, so the order
+     holds even if entries are added out of order).
+
+     To add a photo later, set `photo` to its path, e.g. "assets/team/rathna.jpg".
+     Until then each card falls back to the person's initials, so the layout is
+     identical with or without photos. Square images work best; they are
+     centre-cropped to a square. */
+  var team = [
+    { name: "Agathiyan", title: "Lead Strategic Engineer", photo: null },
+    { name: "Bala", title: "Lead Operations Engineer", photo: null },
+    { name: "Bharathi", title: "Lead Solutions Engineer", photo: null },
+    { name: "Chandrukash", title: "Lead Business Engineer", photo: null },
+    { name: "Rathna", title: "Lead Project Engineer", photo: null }
+  ];
+
   function el(tag, cls) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
@@ -163,6 +178,48 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
   }
 
+  function initials(name) {
+    return name.trim().split(/\s+/).map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+  }
+
+  function renderTeam() {
+    var root = document.getElementById("team-root");
+    if (!root) return;
+
+    var grid = el("div", "team-grid");
+
+    team.slice().sort(function (a, b) {
+      return a.name.localeCompare(b.name);
+    }).forEach(function (person) {
+      var card = el("div", "team-card");
+
+      var avatar = el("div", "team-avatar");
+      if (person.photo) {
+        var img = el("img");
+        img.src = person.photo;
+        img.alt = person.name + ", " + person.title + " at ERK";
+        img.loading = "lazy";
+        img.decoding = "async";
+        avatar.appendChild(img);
+      } else {
+        var ini = el("span", "team-initials");
+        ini.textContent = initials(person.name);
+        ini.setAttribute("aria-hidden", "true");
+        avatar.appendChild(ini);
+      }
+
+      var name = el("h3");
+      name.textContent = person.name;
+      var title = el("p");
+      title.textContent = person.title;
+
+      card.append(avatar, name, title);
+      grid.appendChild(card);
+    });
+
+    root.appendChild(grid);
+  }
+
   function reveals() {
     var nodes = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
     if (!nodes.length) return;
@@ -207,6 +264,7 @@
   }
 
   renderWork();
+  renderTeam();
   lightboxControls();
   reveals();
   mobileNav();

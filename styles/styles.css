@@ -406,6 +406,54 @@ header {
 
 .work-item:hover .plate { outline: 2px solid var(--yellow); outline-offset: 3px; }
 
+/* ---------- Team ---------- */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.team-card { text-align: left; }
+
+/* Square avatar keeps the precise, technical feel of the rest of the page.
+   Holds initials until a photo is supplied, so the layout never shifts. */
+.team-avatar {
+  position: relative;
+  aspect-ratio: 1;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-initials {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--yellow);
+}
+
+.team-card h3 {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+.team-card p {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+}
+
 /* ---------- CTA ---------- */
 
 .cta {
@@ -567,6 +615,8 @@ footer { border-top: 1px solid var(--line); }
 
   .footer-grid { grid-template-columns: 1fr 1fr; }
 
+  .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+
   .section { padding: 4rem 0; }
 }
 
@@ -609,6 +659,8 @@ footer { border-top: 1px solid var(--line); }
   .cta { padding: 1.8rem; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
 
   .section { padding: 3.2rem 0; }
 }
