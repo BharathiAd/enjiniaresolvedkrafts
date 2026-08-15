@@ -41,8 +41,9 @@
     blurb: "The same station from another angle. The gantry frame, pneumatic cylinder and fixture hold the part square through the weld, which is what makes the result repeatable rather than skill-dependent."
   };
 
-  /* Team, rendered alphabetically by name (sorted at render time, so the order
-     holds even if entries are added out of order).
+  /* Team. Anyone marked `pinned` leads the row; everyone else follows in
+     alphabetical order. Sorting happens at render time, so the order holds
+     even if entries are added out of order.
 
      To add a photo later, set `photo` to its path, e.g. "assets/team/rathna.jpg".
      Until then each card falls back to the person's initials, so the layout is
@@ -53,7 +54,7 @@
     { name: "Bala", title: "Lead Operations Engineer", photo: null },
     { name: "Bharathi", title: "Lead Solutions Engineer", photo: null },
     { name: "Chandrukash", title: "Lead Business Engineer", photo: null },
-    { name: "Rathna", title: "Lead Project Engineer", photo: null }
+    { name: "Rathna", title: "Lead Project Engineer", photo: null, pinned: true }
   ];
 
   function el(tag, cls) {
@@ -189,6 +190,9 @@
     var grid = el("div", "team-grid");
 
     team.slice().sort(function (a, b) {
+      var ap = a.pinned ? 0 : 1;
+      var bp = b.pinned ? 0 : 1;
+      if (ap !== bp) return ap - bp;
       return a.name.localeCompare(b.name);
     }).forEach(function (person) {
       var card = el("div", "team-card");
