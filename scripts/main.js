@@ -412,8 +412,28 @@
     });
   }
 
+  /* The hero render is static markup so it paints immediately, but it opens in
+     the same lightbox as the work items. No video is wired here: neither clip
+     shows this machine, and an unrelated animation would misrepresent it. */
+  function enableHeroPlate() {
+    var plate = document.getElementById("hero-plate");
+    if (!plate) return;
+
+    var img = plate.querySelector("img");
+    plate.addEventListener("click", function () {
+      open({
+        title: "Robotic Welding System",
+        tag: "Industrial Automation",
+        image: img.getAttribute("src"),
+        plate: "#eeeeee",
+        blurb: "A six-axis arm welds a cylindrical part held on a rotary positioner, so the joint runs at a steady speed instead of depending on a welder's hand."
+      });
+    });
+  }
+
   renderWork();
   renderTeam();
+  enableHeroPlate();
   lightboxControls();
   reveals();
   mobileNav();

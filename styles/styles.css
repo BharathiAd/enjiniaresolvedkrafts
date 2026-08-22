@@ -312,7 +312,36 @@ header {
   margin-top: 2rem;
 }
 
-.hero-caption { margin-top: 0.85rem; font-size: 0.84rem; color: #7d7d80; }
+.hero-caption {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #7d7d80;
+}
+
+.hero-caption strong {
+  display: block;
+  color: #d8d8db;
+  font-weight: 700;
+}
+
+/* The hero render opens larger on click, so the hover state is a real
+   affordance rather than decoration. */
+.plate-hero {
+  display: block;
+  padding: 0;
+  border: none;
+  text-align: left;
+  outline-offset: 3px;
+  transition: outline-color 0.2s ease;
+  outline: 2px solid transparent;
+}
+
+.plate-hero img { transition: transform 0.35s ease; }
+
+.plate-hero:hover { outline-color: var(--yellow); }
+.plate-hero:focus-visible { outline-color: var(--yellow); }
+.plate-hero:hover img { transform: scale(1.015); }
 
 /* ---------- Philosophy + process ---------- */
 
@@ -726,4 +755,7 @@ footer { border-top: 1px solid var(--line); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .plate-hero img,
+  .work-tile img { transition: none; }
+  .plate-hero:hover img { transform: none; }
 }
