@@ -76,10 +76,13 @@ p { line-height: 1.6; }
   color: var(--yellow);
 }
 
+/* Vertical bar rather than a horizontal rule: it reads as a UI marker instead
+   of a dash. Size, spacing, alignment and type are unchanged. */
 .label::before {
   content: "";
-  width: 22px;
-  height: 1px;
+  width: 3px;
+  height: 13px;
+  border-radius: 1px;
   background: currentColor;
 }
 
