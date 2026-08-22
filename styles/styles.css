@@ -483,6 +483,29 @@ header {
 
 .work-item:hover .plate { outline: 2px solid var(--yellow); outline-offset: 3px; }
 
+/* ---------- About Us: selected work and team ---------- */
+
+.about-more { margin-top: 4.5rem; }
+
+.about-block + .about-block { margin-top: 3.5rem; }
+
+.about-proof {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 72ch;
+  margin-bottom: 1.3rem;
+}
+
+.about-proof p { font-size: 1rem; }
+
+.about-proof strong { color: var(--text); font-weight: 700; }
+
+.about-team-intro {
+  max-width: 60ch;
+  margin-bottom: 1.8rem;
+  font-size: 1rem;
+}
+
 /* ---------- Team ---------- */
 
 /* Compact row. The grid is capped rather than spanning the full container, so
@@ -496,14 +519,16 @@ header {
 
 .team-card { text-align: left; }
 
+/* Card dimensions are unchanged. Only the placeholder tone is adapted, since
+   the team now sits in a dark section rather than a light one. */
 .team-avatar {
   position: relative;
   aspect-ratio: 1;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  background: #e4e4e6;
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  background: #1e1e21;
+  border: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -526,7 +551,7 @@ header {
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #9a9aa0;
+  color: #85858a;
 }
 
 .team-card h3 {
@@ -599,6 +624,7 @@ footer { border-top: 1px solid var(--line); }
 .footer-bottom p { font-size: 0.86rem; color: #6f6f72; }
 
 /* On-brand floating contact button */
+/* Icon only. Same position, same brand yellow, same action. */
 .whatsapp-float {
   position: fixed;
   right: 20px;
@@ -606,19 +632,21 @@ footer { border-top: 1px solid var(--line); }
   z-index: 20;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  min-height: 50px;
-  padding: 0 1.15rem;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
   border-radius: 999px;
   background: var(--yellow);
   color: #111111;
-  font-weight: 700;
-  font-size: 0.92rem;
   text-decoration: none;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  transition: background 0.15s ease, transform 0.15s ease;
 }
 
-.whatsapp-float:hover { background: #ffd54f; }
+.whatsapp-float svg { display: block; }
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible { background: #ffd54f; transform: translateY(-2px); }
 
 /* ---------- Lightbox ---------- */
 
