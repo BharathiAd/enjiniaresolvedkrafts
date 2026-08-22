@@ -8,7 +8,7 @@
     image: "assets/images/product-lifter-celkon.jpg",
     ar: 0.75,
     plate: "#f2f2f2",
-    blurb: "Moving product between levels by hand slows a line and risks damage. This chain-driven lifter transfers components between production levels on a guided frame, removing the manual step and keeping material flowing at line pace."
+    blurb: "Moving parts between levels by hand slows production and risks damage. This chain-driven lifter carries components between levels on a guided frame, so material keeps moving without anyone lifting it."
   };
 
   var inclineBeltLifter = {
@@ -37,7 +37,7 @@
     image: "assets/images/bench-welding-station-2.jpg",
     ar: 0.75,
     plate: "#f2f2f2",
-    blurb: "The same station from another angle. The gantry frame, pneumatic cylinder and fixture hold the part square through the weld, which is what makes the result repeatable rather than skill-dependent."
+    blurb: "The same station from another angle. The gantry frame, pneumatic cylinder and fixture hold the part square through the weld, so every piece comes out the same."
   };
 
   var machineTendingLine = {
@@ -46,7 +46,7 @@
     image: "assets/images/machine-tending-line.jpg",
     ar: 1.3333,
     plate: "#eeeeee",
-    blurb: "Loading and unloading a machine by hand ties up an operator for the whole cycle. This line feeds parts in on a cleated conveyor, transfers them across on a linear axis and presents them to the machine, so the cycle runs without someone standing at it."
+    blurb: "Loading and unloading a machine by hand ties up an operator for the whole cycle. This line feeds parts in on a cleated conveyor, moves them across on a linear axis and presents them to the machine, so the cycle runs without anyone standing at it."
   };
 
   var machineTendingStation = {
@@ -87,7 +87,7 @@
     image: "assets/images/shop-floor-work-table.jpg",
     ar: 1.0,
     plate: "#f1f1f1",
-    blurb: "A fabricated table with integrated seating for four, built as one welded frame so it stays square and stable in daily shop floor use."
+    blurb: "A fabricated table with seating for four, built as one welded frame so it stays square and steady under daily shop floor use."
   };
 
   /* A mechanism motion study. The specific machine it belongs to is not
@@ -99,7 +99,7 @@
     image: "assets/images/mechanism-motion-study-poster.jpg",
     ar: 1.7778,
     plate: "#eef0f2",
-    blurb: "Before a mechanism is built, its travel is simulated in 3D. Here a platen is raised and lowered on guide pillars by pneumatic actuation, checking stroke, clearance and interference while it is still cheap to change.",
+    blurb: "Before a mechanism is built, we simulate its travel in 3D. Here a platen is raised and lowered on guide pillars by pneumatic actuation, so stroke, clearance and interference are checked while changes are still cheap.",
     video: "assets/video/mechanism-motion-study.mp4",
     videoPoster: "assets/images/mechanism-motion-study-poster.jpg",
     videoLabel: "Motion study"
