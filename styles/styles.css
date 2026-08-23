@@ -500,7 +500,8 @@ header {
 
 .about-proof strong { color: var(--text); font-weight: 700; }
 
-.about-team-intro {
+/* Shared intro line for the About Us subsections */
+.about-intro {
   max-width: 60ch;
   margin-bottom: 1.8rem;
   font-size: 1rem;
