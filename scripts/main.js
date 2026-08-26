@@ -29,17 +29,6 @@
     blurb: "A motorised axis and indexing head hold small parts in the same position every cycle, so weld quality stops depending on the operator."
   };
 
-  /* Second view of the same bench station. Shown as its own reversed band so
-     it reads as a detail of that project, not a duplicate tile in the grid. */
-  var gantryDetail = {
-    title: "Gantry and Fixture Detail",
-    tag: "Fabrication",
-    image: "assets/images/bench-welding-station-2.jpg",
-    ar: 0.75,
-    plate: "#f2f2f2",
-    blurb: "The same station from another angle. The gantry frame, pneumatic cylinder and fixture hold the part square through the weld, so every piece comes out the same."
-  };
-
   var machineTendingLine = {
     title: "Machine Tending Line",
     tag: "Industrial Automation",
@@ -110,7 +99,6 @@
   var bands = [
     { type: "feature", item: feature },
     { type: "row", items: [inclineBeltLifter, benchWeldingStation] },
-    { type: "feature", item: gantryDetail, reversed: true },
     { type: "feature", item: machineTendingLine },
     { type: "feature", item: machineTendingStation, reversed: true },
     { type: "feature", item: retrofitJobHandling },
