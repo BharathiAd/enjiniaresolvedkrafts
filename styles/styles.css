@@ -26,10 +26,24 @@
 
   --radius: 12px;
   --container: 1280px;
+
+  /* Measured height of the sticky header. Anything that must clear the header
+     refers to this rather than repeating a number. */
+  --header-h: 77px;
+
+  /* The gap between one Work project and the next. Declared once so the rhythm
+     cannot drift when bands are reordered. */
+  --band-gap: 7rem;
 }
 
 html {
   scroll-behavior: smooth;
+
+  /* The header is sticky, so an anchor jump would otherwise land its target
+     underneath it. Setting the offset on the scroll container fixes every
+     anchor at once, including any added later, which is why this lives here
+     and not as a margin on individual sections. */
+  scroll-padding-top: calc(var(--header-h) + 2rem);
 }
 
 body {
@@ -428,6 +442,15 @@ header {
 
 /* ---------- Engineering work ---------- */
 
+/* Every project boundary is one gap, set on the container. Bands carry no
+   margins of their own, so reordering them can never open a 0px seam between
+   two projects or double a gap somewhere else. */
+#work-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--band-gap);
+}
+
 /* The visual column is the larger one: the feature render should read as the
    biggest thing in the section, not smaller than the pair below it. */
 .work-feature {
@@ -435,14 +458,9 @@ header {
   grid-template-columns: 0.8fr 1.15fr;
   gap: 3.5rem;
   align-items: center;
-  margin-bottom: 4rem;
 }
 
-.work-feature.is-reversed {
-  grid-template-columns: 1.15fr 0.8fr;
-  margin-bottom: 0;
-  margin-top: 4rem;
-}
+.work-feature.is-reversed { grid-template-columns: 1.15fr 0.8fr; }
 
 .work-feature.is-reversed .work-feature-copy { order: 2; }
 .work-feature.is-reversed .work-feature-visual { order: 1; }
@@ -467,10 +485,16 @@ header {
   gap: 3rem;
 }
 
+/* A cell is capped by the height allowance and by half the row, so a pair can
+   never add up to more than the row is wide. Sizing off the viewport rather
+   than off a percentage keeps it out of the circular case where the column
+   width depends on the item and the item depends on the column. */
+.work-row { --cell-max: calc((min(100vw - 3.5rem, var(--container)) - 3rem) / 2); }
+
 .work-item {
   cursor: pointer;
   flex: 0 0 auto;
-  width: min(100%, calc(76vh * var(--ar)));
+  width: min(calc(76vh * var(--ar)), var(--cell-max));
 }
 
 .work-item .plate { --maxh: 76vh; transition: outline-color 0.15s ease; }
@@ -482,6 +506,182 @@ header {
 .work-meta p { margin-top: 0.4rem; font-size: 0.95rem; max-width: 40ch; }
 
 .work-item:hover .plate { outline: 2px solid var(--yellow); outline-offset: 3px; }
+
+/* ---------- Case study panel ----------
+   Before and after. The "after" line is the machine's own description, already
+   on the page, so the panel repeats nothing: it adds the manual method the
+   machine replaces and the one change worth naming.
+
+   Hierarchy is made with type size, space and a single hairline. No cards, no
+   tinted panels, no progress bars. The render is the hero of the band and this
+   column supports it, so it must not turn into a dashboard sitting next to a
+   photograph. Only one value in the whole panel is yellow. */
+.impact { margin-top: 1.1rem; max-width: 42ch; }
+
+.impact-step + .impact-step { margin-top: 0.8rem; }
+
+.impact-label,
+.km-label,
+.impact-detail .impact-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.impact-label.is-after { color: var(--yellow); }
+
+.work-feature .impact-step p,
+.work-meta .impact-step p { margin-top: 0.28rem; max-width: none; }
+
+/* One hairline separates the story from the evidence. It is the only rule in
+   the panel, so the space around it does the work instead of a border box. */
+.impact-figures {
+  margin-top: 1.5rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ---- The headline change ---- */
+.km-value {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+}
+
+.km-before { color: var(--muted); font-weight: 700; }
+.km-arrow { padding: 0 0.5rem; color: var(--muted); opacity: 0.4; font-weight: 400; }
+.km-after { color: var(--yellow); }
+
+.km-note {
+  margin-top: 0.7rem;
+  max-width: 36ch;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* ---- Supporting figures: quieter, and never yellow ---- */
+.impact-support {
+  list-style: none;
+  margin-top: 1.4rem;
+}
+
+.impact-support li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.1rem 1.5rem;
+  padding: 0.32rem 0;
+  font-size: 0.86rem;
+}
+
+.sm-label { color: var(--muted); }
+.sm-value { color: var(--muted); white-space: nowrap; }
+.sm-before { color: var(--muted); }
+.sm-arrow { padding: 0 0.35rem; opacity: 0.4; }
+.sm-after { color: var(--text); font-weight: 600; }
+
+/* ---- Direction only, for the project with no production figures ---- */
+.impact-results {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.4rem;
+  margin-top: 1.5rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+}
+
+.impact-results li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.impact-results li::before { font-weight: 700; }
+.impact-results .is-down::before { content: "\2193"; }
+.impact-results .is-up::before { content: "\2191"; color: var(--yellow); }
+
+/* ---- Specification, for the fabrication items ---- */
+.impact-detail { margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+
+.detail-list { list-style: none; margin-top: 0.55rem; }
+
+.detail-list li {
+  padding: 0.28rem 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.detail-list li::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin-right: 0.65rem;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.6;
+  vertical-align: middle;
+}
+
+.work-body { max-width: 42ch; }
+
+/* One caveat for the whole section, set quietly at the end of it. */
+.work-caveat {
+  margin-top: 3.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  max-width: 58ch;
+  opacity: 0.55;
+}
+
+.section-light .impact-figures,
+.section-light .impact-results,
+.section-light .impact-detail,
+.section-light .work-caveat { border-top-color: var(--l-line); }
+.section-light .km-after { color: var(--yellow-dark); }
+.section-light .sm-after { color: var(--l-text); }
+.section-light .impact-label.is-after { color: var(--yellow-dark); }
+.section-light .impact-results .is-up::before { color: var(--yellow-dark); }
+
+/* A pair row aligns its two machines on a shared top line, then lets the text
+   below run to whatever length it needs. Bottom alignment cannot do this: it
+   ties the machines to the length of the writing under them, so the longer
+   caption pushes its machine up. The cell width cap guarantees two columns
+   always fit, so this never overflows into a stack. */
+@supports (grid-template-rows: subgrid) {
+  .work-row {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto auto;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .work-item {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+  }
+
+  /* Two machines of different proportions share a floor line, so they read as
+     standing in the same room. The spare height goes above the shorter one,
+     where it is sky, rather than below it, where it would be a hole between a
+     machine and its own caption. */
+  .work-item > .plate { align-self: end; }
+}
 
 /* ---------- Engineering Note ---------- */
 
@@ -709,6 +909,8 @@ footer { border-top: 1px solid var(--line); }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1020px) {
+  :root { --band-gap: 5.5rem; }
+
   .hero-grid,
   .phil-grid,
   .work-feature,
@@ -722,7 +924,7 @@ footer { border-top: 1px solid var(--line); }
 
   .phil-visual { max-width: 360px; margin: 0 auto; }
 
-  .work-item { width: min(100%, calc(62vh * var(--ar))); }
+  .work-item { width: min(calc(62vh * var(--ar)), var(--cell-max)); }
   .work-item .plate { --maxh: 62vh; }
   .work-feature-visual .plate { --maxh: 70vh; }
 
@@ -735,6 +937,15 @@ footer { border-top: 1px solid var(--line); }
 }
 
 @media (max-width: 760px) {
+  :root { --band-gap: 4.5rem; }
+
+  /* The floating contact button is fixed to the bottom right corner, so on a
+     narrow screen a value pushed to the right edge can end up underneath it.
+     Stacking the pair puts every figure on the left, clear of the button, and
+     reads better in a single column anyway. */
+  .impact-support li { display: block; padding: 0.45rem 0; }
+  .impact-support .sm-value { display: block; margin-top: 0.1rem; }
+
   .brand-name { display: none; }
 
   .nav-links {
@@ -766,6 +977,9 @@ footer { border-top: 1px solid var(--line); }
   .cap-row { grid-template-columns: 2.6rem 1fr; row-gap: 0.4rem; }
   .cap-row p { grid-column: 2 / -1; }
 
+  /* Single column here, so the pair row stops being a pair and the subgrid
+     above does not hold two machines side by side on a phone. */
+  .work-row { grid-template-columns: minmax(0, 1fr); --cell-max: 100%; }
   .work-item { width: 100%; }
   .work-item .plate { --maxh: 58vh; }
   .work-feature-visual .plate { --maxh: 62vh; }

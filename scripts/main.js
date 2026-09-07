@@ -1,23 +1,46 @@
 (function () {
+  /* ILLUSTRATIVE FIGURES, NOT MEASURED RESULTS.
+     Every number in an `impact` block is an engineering estimate for a
+     representative operating scenario. None of it was timed on a shop floor.
+     The section carries one plain caveat saying so, and that caveat is wired to
+     this flag: turn the flag off and the numbers and the caveat go together.
+
+     If a customer ever releases a measured figure it replaces an estimate here.
+     Never widen an estimate into a claim. */
+  var SHOW_FIGURES = true;
+
   /* Each render carries its own measured aspect ratio and background colour.
      The plate uses both, so the machine is never cropped and the plate edge
-     is never visible. To add a machine later, add an entry here. */
+     is never visible. To add a machine later, add an entry here.
+
+     Three shapes of entry, and an item takes the lightest one that fits:
+
+       `before` + `impact`  a case study. The manual method, what we built, one
+                            headline change and at most two supporting figures.
+       `before` alone       a change worth stating, with no number behind it.
+       `detail`             fabrication evidence. A short specification and no
+                            impact claim, because none was made.
+
+     `before` is written in the present tense as a description of the manual
+     method itself. It must never describe what a particular customer used to
+     do, because we were not there and cannot show it. `blurb` is the "after"
+     line, so nothing is written twice. */
+
   var feature = {
     title: "Vertical Product Lifter",
     tag: "Material Handling",
     image: "assets/images/product-lifter-celkon.jpg",
     ar: 0.75,
     plate: "#f2f2f2",
-    blurb: "Moving parts between levels by hand slows production and risks damage. This chain-driven lifter carries components between levels on a guided frame, so material keeps moving without anyone lifting it."
-  };
-
-  var inclineBeltLifter = {
-    title: "Incline Belt Lifter",
-    tag: "Material Handling",
-    image: "assets/images/incline-belt-lifter-kcm.jpg",
-    ar: 0.75,
-    plate: "#f2f2f2",
-    blurb: "Raises product to the next station on a continuous run, so feeding stays steady and operators are not lifting between levels."
+    before: "Moving parts between levels by hand slows production and risks damage.",
+    blurb: "This chain-driven lifter carries components between levels on a guided frame, so material keeps moving without anyone lifting it.",
+    impact: {
+      key: { label: "Transfer time per part", before: "45 s", after: "20 s", note: "The transfer runs without anyone attending it." },
+      support: [
+        { label: "Parts moved per hour", before: "about 60", after: "about 180" },
+        { label: "Manual lifts per part", before: "1", after: "0" }
+      ]
+    }
   };
 
   var benchWeldingStation = {
@@ -26,7 +49,15 @@
     image: "assets/images/bench-welding-station-1.jpg",
     ar: 0.75,
     plate: "#f2f2f2",
-    blurb: "A motorised axis and indexing head hold small parts in the same position every cycle, so weld quality stops depending on the operator."
+    before: "Small parts positioned by hand sit a little differently each time, so alignment and weld position follow the operator rather than the drawing.",
+    blurb: "A motorised axis and indexing head hold small parts in the same position every cycle, so weld quality stops depending on the operator.",
+    impact: {
+      key: { label: "Setup and alignment per part", before: "90 s", after: "20 s", note: "Headcount is unchanged here. What this station buys is repeatability." },
+      support: [
+        { label: "Parts welded per hour", before: "about 24", after: "about 45" },
+        { label: "Operator positioning", before: "Manual", after: "Indexed" }
+      ]
+    }
   };
 
   var machineTendingLine = {
@@ -35,16 +66,41 @@
     image: "assets/images/machine-tending-line.jpg",
     ar: 1.3333,
     plate: "#eeeeee",
-    blurb: "Loading and unloading a machine by hand ties up an operator for the whole cycle. This line feeds parts in on a cleated conveyor, moves them across on a linear axis and presents them to the machine, so the cycle runs without anyone standing at it."
+    before: "Loading and unloading a machine by hand ties up an operator for the whole cycle.",
+    blurb: "This line feeds parts in on a cleated conveyor, moves them across on a linear axis and presents them to the machine, so the cycle runs without anyone standing at it.",
+    impact: {
+      key: { label: "Operators for three machines", before: "3", after: "1", note: "One operator supervises the line instead of standing at one machine." },
+      support: [
+        { label: "Time per part, including load", before: "55 s", after: "43 s" },
+        { label: "Operator interventions per part", before: "2", after: "0" }
+      ]
+    }
   };
 
+  /* The infeed end of the line above, so it is shown as a closer look at that
+     machine and carries no impact of its own. Counting one result twice is how
+     a portfolio starts to feel padded. */
   var machineTendingStation = {
     title: "Transfer Station Detail",
     tag: "Industrial Automation",
     image: "assets/images/machine-tending-station.jpg",
     ar: 1.0,
     plate: "#eeeeee",
-    blurb: "The infeed end of the same line. The cleated belt sets part spacing, and the slide below carries each part into the pick position on a repeatable stroke."
+    blurb: "The infeed end of the same line. The cleated belt sets part spacing, and the slide below carries each part into the pick position on a repeatable stroke.",
+    detail: {
+      title: "Part of the Machine Tending Line",
+      items: ["Cleated belt sets part spacing", "Linear slide runs on twin rails"]
+    }
+  };
+
+  var inclineBeltLifter = {
+    title: "Incline Belt Lifter",
+    tag: "Material Handling",
+    image: "assets/images/incline-belt-lifter-kcm.jpg",
+    ar: 0.75,
+    plate: "#f2f2f2",
+    before: "Feeding the next station by hand means someone lifts every piece between levels.",
+    blurb: "Raises product to the next station on a continuous run, so feeding stays steady and operators are not lifting between levels."
   };
 
   /* The one project with a motion study attached. The video is the same
@@ -55,7 +111,15 @@
     image: "assets/images/retrofit-job-handling.jpg",
     ar: 1.0,
     plate: "#f0f0f0",
+    before: "Taking the finished part out by hand needs an operator free at the end of every cycle, and the machine waits until one is.",
     blurb: "Added to a machine already running on the floor. A gripper lifts the finished part clear and releases it onto a chute, so unloading no longer needs a hand in the machine between cycles.",
+    impact: {
+      key: { label: "Unload time per cycle", before: "18 s", after: "5 s", note: "The machine you already own stays in service. The automation is built around it." },
+      support: [
+        { label: "Manual unloading", before: "1", after: "0" },
+        { label: "Existing machine", before: "Retained", after: "Automated" }
+      ]
+    },
     video: "assets/video/retrofit-job-handling.mp4",
     videoPoster: "assets/images/retrofit-job-handling-poster.jpg",
     videoLabel: "Motion study"
@@ -67,7 +131,11 @@
     image: "assets/images/operator-test-bench.jpg",
     ar: 0.8,
     plate: "#f1f1f1",
-    blurb: "A test and inspection station built to working height, with the instrument shelf, worktop and keyboard tray set where an operator actually reaches during a shift."
+    blurb: "A test and inspection station built to working height, with the instrument shelf, worktop and keyboard tray set where an operator actually reaches during a shift.",
+    detail: {
+      title: "Built around the operator",
+      items: ["Instrument shelf above the worktop", "Keyboard tray below the worktop"]
+    }
   };
 
   var workTable = {
@@ -76,26 +144,32 @@
     image: "assets/images/shop-floor-work-table.jpg",
     ar: 1.0,
     plate: "#f1f1f1",
-    blurb: "A fabricated table with seating for four, built as one welded frame so it stays square and steady under daily shop floor use."
+    blurb: "A fabricated table with seating for four, built as one welded frame so it stays square and steady under daily shop floor use.",
+    detail: {
+      title: "Fabrication work",
+      items: ["Seating for four on swing-out arms", "Single welded frame"]
+    }
   };
 
-  /* A mechanism motion study. The specific machine it belongs to is not
-     confirmed, so it is presented as engineering motion work rather than
-     being attached to a named project. */
+  /* Design work, so it carries no production figures. What changes here is when
+     a problem is found, not how fast a part moves. */
   var motionStudy = {
     title: "Mechanism Motion Study",
     tag: "Engineering Design",
     image: "assets/images/mechanism-motion-study-poster.jpg",
     ar: 1.7778,
     plate: "#eef0f2",
+    before: "Clearance and interference found after the parts are cut means cutting them again.",
     blurb: "Before a mechanism is built, we simulate its travel in 3D. Here a platen is raised and lowered on guide pillars by pneumatic actuation, so stroke, clearance and interference are checked while changes are still cheap.",
+    results: [
+      { dir: "down", text: "Physical trial and error" },
+      { dir: "up", text: "Design confidence" }
+    ],
     video: "assets/video/mechanism-motion-study.mp4",
     videoPoster: "assets/images/mechanism-motion-study-poster.jpg",
     videoLabel: "Motion study"
   };
 
-  /* Section order. Feature bands alternate sides so the page keeps a rhythm,
-     and each pair row holds two machines on a shared baseline. */
   /* Engineering Notes. One is shown per page load. A first-time visitor always
      gets note 0, the fixture one, because it is the note that connects the idea
      to what ERK actually builds; after that it is random, so a refresh or a
@@ -178,14 +252,19 @@
     }
   ];
 
+  /* Composition. The five case studies each take a feature band, alternating
+     sides, so the machine stays the largest thing on screen and the reading
+     order runs machine, problem, what we built, what changed. The lighter items
+     pair off between them, which keeps the section from becoming seven
+     identical full width blocks. */
   var bands = [
     { type: "feature", item: feature },
-    { type: "row", items: [inclineBeltLifter, benchWeldingStation] },
+    { type: "feature", item: benchWeldingStation, reversed: true },
     { type: "feature", item: machineTendingLine },
-    { type: "feature", item: machineTendingStation, reversed: true },
-    { type: "feature", item: retrofitJobHandling },
+    { type: "row", items: [machineTendingStation, inclineBeltLifter] },
+    { type: "feature", item: retrofitJobHandling, reversed: true },
     { type: "row", items: [operatorTestBench, workTable] },
-    { type: "feature", item: motionStudy, reversed: true }
+    { type: "feature", item: motionStudy }
   ];
 
   /* Team. Anyone marked `pinned` leads the row; everyone else follows in
@@ -280,15 +359,130 @@
     return item.video ? videoPlate(item) : plate(item);
   }
 
+  function step(label, text, isAfter) {
+    var s = el("div", "impact-step");
+    var l = el("span", "impact-label" + (isAfter ? " is-after" : ""));
+    l.textContent = label;
+    var p = el("p");
+    p.textContent = text;
+    s.append(l, p);
+    return s;
+  }
+
+  /* A before to after pair of values, used at both sizes. The improved value
+     is the only part that changes colour, so the eye lands on it without any
+     surrounding box being needed. */
+  function pair(prefix, before, after) {
+    var wrap = el("span", prefix + "-value");
+    var b = el("span", prefix + "-before");
+    b.textContent = before;
+    var arrow = el("span", prefix + "-arrow");
+    arrow.textContent = "\u2192";
+    arrow.setAttribute("aria-hidden", "true");
+    var a = el("span", prefix + "-after");
+    a.textContent = after;
+    wrap.append(b, arrow, a);
+    return wrap;
+  }
+
+  /* The headline change, set large. One per project, and it is chosen to be the
+     thing that actually changed about the operation rather than whichever
+     number happens to look biggest. */
+  function keyMetric(k) {
+    var box = el("div", "impact-key");
+
+    var label = el("span", "km-label");
+    label.textContent = k.label;
+    box.append(label, pair("km", k.before, k.after));
+
+    if (k.note) {
+      var note = el("p", "km-note");
+      note.textContent = k.note;
+      box.appendChild(note);
+    }
+    return box;
+  }
+
+  /* Supporting figures. Quiet on purpose: no rules between rows, no colour, no
+     box. They are evidence under the headline, not competing headlines. */
+  function supportMetrics(rows) {
+    var ul = el("ul", "impact-support");
+    rows.forEach(function (r) {
+      var li = el("li");
+      var label = el("span", "sm-label");
+      label.textContent = r.label;
+      li.append(label, pair("sm", r.before, r.after));
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  function resultsBlock(rows) {
+    var ul = el("ul", "impact-results");
+    rows.forEach(function (r) {
+      var li = el("li", r.dir === "up" ? "is-up" : "is-down");
+      li.textContent = r.text;
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  /* A short specification, for the items that are fabrication evidence rather
+     than a change story. No impact is claimed, because none was made. */
+  function detailBlock(d) {
+    var box = el("div", "impact-detail");
+    var t = el("span", "impact-label");
+    t.textContent = d.title;
+    var ul = el("ul", "detail-list");
+    d.items.forEach(function (text) {
+      var li = el("li");
+      li.textContent = text;
+      ul.appendChild(li);
+    });
+    box.append(t, ul);
+    return box;
+  }
+
+  /* The case study panel: the manual method, what we built, then what changed.
+     An item with no `impact` simply stops after the two paragraphs, which is
+     what keeps the lighter projects light. */
+  function impact(item) {
+    var box = el("div", "impact");
+    box.append(step("Before", item.before, false), step("After", item.blurb, true));
+
+    if (SHOW_FIGURES && item.impact) {
+      var fig = el("div", "impact-figures");
+      fig.appendChild(keyMetric(item.impact.key));
+      if (item.impact.support && item.impact.support.length) {
+        fig.appendChild(supportMetrics(item.impact.support));
+      }
+      box.appendChild(fig);
+    } else if (item.results && item.results.length) {
+      box.appendChild(resultsBlock(item.results));
+    }
+    return box;
+  }
+
+  /* Body copy for an item: the panel if it has one, otherwise the plain blurb. */
+  function body(item) {
+    if (item.before) return impact(item);
+
+    var p = el("p");
+    p.textContent = item.blurb;
+    if (!item.detail) return p;
+
+    var wrap = el("div", "work-body");
+    wrap.append(p, detailBlock(item.detail));
+    return wrap;
+  }
+
   function meta(item) {
     var m = el("div", "work-meta");
     var tag = el("span", "label");
     tag.textContent = item.tag;
     var h = el("h3");
     h.textContent = item.title;
-    var p = el("p");
-    p.textContent = item.blurb;
-    m.append(tag, h, p);
+    m.append(tag, h, body(item));
     return m;
   }
 
@@ -300,9 +494,7 @@
     tag.textContent = item.tag;
     var h3 = el("h3");
     h3.textContent = item.title;
-    var p = el("p");
-    p.textContent = item.blurb;
-    copy.append(tag, h3, p);
+    copy.append(tag, h3, body(item));
 
     /* A video band opens on its own play control, so it does not also offer a
        "view larger" that would fight with it. */
@@ -369,7 +561,20 @@
     img.style.background = item.plate;
     tag.textContent = item.tag;
     title.textContent = item.title;
-    desc.textContent = item.blurb;
+
+    /* An item with a panel shows the panel here instead of the plain blurb,
+       since the blurb is the panel's "after" line and would otherwise appear
+       twice in the same caption. */
+    var slot = document.getElementById("lightbox-impact");
+    if (slot) slot.innerHTML = "";
+    if (item.before && slot) {
+      desc.textContent = "";
+      desc.hidden = true;
+      slot.appendChild(impact(item));
+    } else {
+      desc.hidden = false;
+      desc.textContent = item.blurb;
+    }
 
     lb.classList.add("is-open");
     lb.setAttribute("aria-hidden", "false");
@@ -496,7 +701,15 @@
         tag: "Industrial Automation",
         image: img.getAttribute("src"),
         plate: "#eeeeee",
-        blurb: "A six-axis arm welds a cylindrical part held on a rotary positioner, so the joint runs at a steady speed instead of depending on a welder's hand."
+        before: "Welding a joint like this by hand keeps the operator at the arc for the whole run, and the part has to be repositioned between passes.",
+        blurb: "A six-axis arm welds a cylindrical part held on a rotary positioner, so the joint runs at a steady speed instead of depending on a welder's hand.",
+        impact: {
+          key: { label: "Welders at the arc", before: "1", after: "0", note: "The operator loads and unloads instead of standing at the arc for the whole run." },
+          support: [
+            { label: "Cycle time per joint", before: "5 min", after: "3 min" },
+            { label: "Repositioning stops per joint", before: "4", after: "0" }
+          ]
+        }
       });
     });
   }
@@ -525,7 +738,16 @@
     a.setAttribute("href", n.href);
   }
 
+  /* The caveat belongs to the figures, so it appears and disappears with them. */
+  function renderCaveat() {
+    var c = document.getElementById("work-caveat");
+    if (!c || !SHOW_FIGURES) return;
+    c.textContent = "Illustrative impact. Figures shown are based on a representative operating scenario, not measured results from a specific installation. Actual performance varies with part, cycle, volume and plant conditions.";
+    c.hidden = false;
+  }
+
   renderWork();
+  renderCaveat();
   renderTeam();
   renderNote();
   enableHeroPlate();
