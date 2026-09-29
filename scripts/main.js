@@ -125,6 +125,24 @@
     videoLabel: "Motion study"
   };
 
+  /* Described only from what the render shows: an enclosed cabinet, an opening
+     in the top, hinged access doors and braked castors. What it decomposes, how
+     much and for whom are not stated, because none of that is visible and none
+     of it has been confirmed. It carries the light `detail` treatment for the
+     same reason: there is no known before to set it against. */
+  var decomposer = {
+    title: "Mobile Decomposer",
+    tag: "Custom Machines",
+    image: "assets/images/decomposer.jpg",
+    ar: 1.0,
+    plate: "#dbdbde",
+    blurb: "A decomposer built as one enclosed sheet metal cabinet. Material goes in through the opening in the top, hinged doors open the chamber up for access, and it stands on braked castors so it can be moved into place.",
+    detail: {
+      title: "Sheet metal construction",
+      items: ["Loading opening in the top panel", "Hinged doors for access to the chamber", "Mobile on braked castors"]
+    }
+  };
+
   var operatorTestBench = {
     title: "Operator Test Bench",
     tag: "Fabrication",
@@ -263,8 +281,9 @@
     { type: "feature", item: machineTendingLine },
     { type: "row", items: [machineTendingStation, inclineBeltLifter] },
     { type: "feature", item: retrofitJobHandling, reversed: true },
+    { type: "feature", item: decomposer },
     { type: "row", items: [operatorTestBench, workTable] },
-    { type: "feature", item: motionStudy }
+    { type: "feature", item: motionStudy, reversed: true }
   ];
 
   /* Team. Anyone marked `pinned` leads the row; everyone else follows in
